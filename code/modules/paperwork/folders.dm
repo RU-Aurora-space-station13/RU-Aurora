@@ -61,7 +61,7 @@
 		dat += "<A href='?src=\ref[src];remove=\ref[Pb]'>Remove</A> <A href='?src=\ref[src];rename=\ref[Pb]'>Rename</A> - <A href='?src=\ref[src];browse=\ref[Pb]'>[Pb.name]</A><BR>"
 	for(var/obj/item/sample/Pf in src)
 		dat += "<A href='?src=\ref[src];remove=\ref[Pf]'>Remove</A> - [Pf.name]<BR>"
-	user << browse(dat, "window=folder")
+	show_browser(user, dat, "window=folder")
 	onclose(user, "folder")
 	add_fingerprint(usr)
 	return
