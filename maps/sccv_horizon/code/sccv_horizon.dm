@@ -22,18 +22,18 @@
 		"6" = /turf/space
 	)
 
-	station_name = "SCCV Горизонт"
-	station_short = "Горизонт"
-	dock_name = "Корпоративный связной порт"
-	dock_short = "Связной порт"
-	boss_name = "Звёздный Корпоративный Конгломерат"
-	boss_short = "ЗКК"
-	company_name = "Звёздный Корпоративный Конгломерат"
-	company_short = "ЗКК"
-	station_type = "судно"
+	station_name = "SCCV Horizon"
+	station_short = "Horizon"
+	dock_name = "SCC Sector Liaison Post"
+	dock_short = "Sector Liaison Post"
+	boss_name = "Stellar Corporate Conglomerate"
+	boss_short = "SCC"
+	company_name = "Stellar Corporate Conglomerate"
+	company_short = "SCC"
+	station_type = "ship"
 
 	command_spawn_enabled = TRUE
-	command_spawn_message = "Добро пожаловать на SCCV Горизонт!"
+	command_spawn_message = "Welcome to the SCCV Horizon!"
 
 	use_overmap = TRUE
 	num_exoplanets = 2
@@ -98,7 +98,6 @@
 	rogue_drone_end_message = "Внимание экипажу: Боевые дроны покинули судно."
 	rogue_drone_destroyed_message = "Внимание экипажу: Потерян визуальный контакт с дронами."
 
-
 	map_shuttles = list(
 		/datum/shuttle/autodock/ferry/lift/scc_ship/morgue,
 		/datum/shuttle/autodock/multi/lift/operations,
@@ -142,34 +141,34 @@
 /datum/map/sccv_horizon/send_welcome()
 	var/obj/effect/overmap/visitable/ship/horizon = SSshuttle.ship_by_type(/obj/effect/overmap/visitable/ship/sccv_horizon)
 
-	var/welcome_text = "<center><img src = scclogo.png><br />[FONT_LARGE("<b>SCCV Горизонт</b> Данные считывания сенсоров сверх-дальнего действия:")]<br>"
-	welcome_text += "Отчёт сгенерирован [worlddate2text()] в [worldtime2text()]</center><br /><br />"
-	welcome_text += "<hr>Текущий сектор:<br /><b>[SSatlas.current_sector.name]</b><br /><br>"
+	var/welcome_text = "<center><img src = scclogo.png><br />[FONT_LARGE("<b>SCCV Horizon</b> Ultra-Range Sensor Readings:")]<br>"
+	welcome_text += "Report generated on [worlddate2text()] at [worldtime2text()]</center><br /><br />"
+	welcome_text += "<hr>Current sector:<br /><b>[SSatlas.current_sector.name]</b><br /><br>"
 
 	if (horizon) //If the overmap is disabled, it's possible for there to be no Horizon.
 		var/list/space_things = list()
-		welcome_text += "Текущие координаты:<br /><b>[horizon.x]:[horizon.y]</b><br /><br>"
-		welcome_text += "Следующая система для прыжка:<br /><b>[SSatlas.current_sector.generate_system_name()]</b><br /><br>"
+		welcome_text += "Current Coordinates:<br /><b>[horizon.x]:[horizon.y]</b><br /><br>"
+		welcome_text += "Next system targeted for jump:<br /><b>[SSatlas.current_sector.generate_system_name()]</b><br /><br>"
 		var/last_visit
-		var/current_day = time2text(world.realtime, "День")
+		var/current_day = time2text(world.realtime, "Day")
 		switch(current_day)
 			if("Monday")
-				last_visit = "1 день назад"
+				last_visit = "1 day ago"
 			if("Tuesday")
-				last_visit = "2 дня назад"
+				last_visit = "2 days ago"
 			if("Wednesday")
-				last_visit = "3 дня назад"
+				last_visit = "3 days ago"
 			if("Thursday")
-				last_visit = "4 дня назад"
+				last_visit = "4 days ago"
 			if("Friday")
-				last_visit = "5 дней назад"
+				last_visit = "5 days ago"
 			if("Saturday")
-				last_visit = "6 дней назад"
+				last_visit = "6 days ago"
 			if("Sunday")
-				last_visit = "Неделю назад"
-		welcome_text += "Последний визит в порт: <br><b>[last_visit]</b><br><br>"
-		welcome_text += "До ближайшего порта:<br /><b>[SSatlas.current_sector.get_port_travel_time()]</b><br /><br>"
-		welcome_text += "Сканирование системы выявило следующие точки интереса:<br />"
+				last_visit = "1 week ago"
+		welcome_text += "Last port visit: <br><b>[last_visit]</b><br><br>"
+		welcome_text += "Travel time to nearest port:<br /><b>[SSatlas.current_sector.get_port_travel_time()]</b><br /><br>"
+		welcome_text += "Scan results show the following points of interest:<br />"
 
 		for(var/zlevel in GLOB.map_sectors)
 			var/obj/effect/overmap/visitable/O = GLOB.map_sectors[zlevel]
@@ -182,18 +181,18 @@
 			space_things |= O
 
 		for(var/obj/effect/overmap/visitable/O in space_things)
-			var/location_desc = " на следующих координатах."
+			var/location_desc = " at present co-ordinates."
 			if(O.loc != horizon.loc)
 				var/bearing = round(90 - Atan2(O.x - horizon.x, O.y - horizon.y),5) //fucking triangles how do they work
 				if(bearing < 0)
 					bearing += 360
-				location_desc = ", азимут [bearing]."
+				location_desc = ", bearing [bearing]."
 			welcome_text += "<li>\A <b>[O.name]</b>[location_desc]</li>"
 
 		welcome_text += "<hr>"
 
-	post_comm_message("Данные считывания сенсоров SCCV Горизонт", welcome_text)
-	priority_announcement.Announce(message = "Данные со считывания сенсоров сверх-дальнего действия были распечатаны на все консоли командования.")
+	post_comm_message("SCCV Horizon Sensor Readings", welcome_text)
+	priority_announcement.Announce(message = "Long-range sensor readings have been printed out at all communication consoles.")
 
 /datum/map/sccv_horizon/load_holodeck_programs()
 	// loads only if at least two engineers are present
