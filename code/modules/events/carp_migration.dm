@@ -23,10 +23,10 @@
 	var/announcement = ""
 	var/soundfile = 'sound/AI/carp_migration.ogg'
 	if(severity == EVENT_LEVEL_MAJOR && deploy_drones)
-		announcement = "A massive migration of unknown biological entities has been detected near [location_name()], please stand-by."
+		announcement = "Внимание экипажу: Миграция космической фауны."
 		soundfile = 'sound/AI/massivespacecarp.ogg'
 	else
-		announcement = "Unknown biological [length(spawned_carp) == 1 ? "entity has" : "entities have"] been detected near [location_name()], please stand-by."
+		announcement = "Внимание экипажу: [length(spawned_carp) == 1 ? "обнаружена неизвестная биологическая единица" : "обнаружены неизвестные биологические единицы"] в непосредственной близости к судну."
 	command_announcement.Announce(announcement, "Lifesign Alert", new_sound = soundfile, zlevels = affecting_z)
 
 /datum/event/carp_migration/start()
@@ -108,7 +108,7 @@
 	spawn_fish(7, 3, 5)
 
 /datum/event/carp_migration/cozmo/announce()
-	command_announcement.Announce("A migration of non-hostile entities has been detected near the ship.", "Lifesign Alert", 'sound/AI/cozmo_migration.ogg', zlevels = affecting_z)
+	command_announcement.Announce("Внимание экипажу: Миграция мирной фауны.", "Внешний мониторинг", 'sound/AI/cozmo_migration.ogg', zlevels = affecting_z)
 
 /datum/event/carp_migration/cozmo/spawn_fish(var/num_groups, var/group_size_min = 3, var/group_size_max = 5, var/spawn_drones = FALSE)
 	set waitfor = FALSE

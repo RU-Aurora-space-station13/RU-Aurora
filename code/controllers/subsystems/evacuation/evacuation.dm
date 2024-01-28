@@ -129,11 +129,11 @@ var/datum/evacuation_controller/evacuation_controller
 
 	switch(evacuation_type)
 		if(TRANSFER_EMERGENCY)
-			evac_waiting.Announce(replacetext(current_map.emergency_shuttle_docked_message, "%ETA%", "[estimated_time] minute\s"), new_sound = sound('sound/AI/emergency_shuttle_docked.ogg'))
+			evac_waiting.Announce(replacetext(current_map.emergency_shuttle_docked_message, "%ETA%", "[estimated_time] минуты"), new_sound = sound('sound/AI/emergency_shuttle_docked.ogg'))
 		if(TRANSFER_JUMP)
-			priority_announcement.Announce(replacetext(replacetext(current_map.bluespace_docked_message, "%dock%", "[current_map.dock_name]"), "%ETA%", "[estimated_time] minute\s"), new_sound = sound('sound/AI/bluespace_jump_docked.ogg'))
+			priority_announcement.Announce(replacetext(replacetext(current_map.bluespace_docked_message, "%dock%", "[current_map.dock_name]"), "%ETA%", "[estimated_time] минуты"), new_sound = sound('sound/AI/bluespace_jump_docked.ogg'))
 		if(TRANSFER_CREW)
-			priority_announcement.Announce(replacetext(replacetext(current_map.shuttle_docked_message, "%dock%", "[current_map.dock_name]"), "%ETA%", "[estimated_time] minute\s"), new_sound = sound('sound/AI/shuttle_docked_message.ogg'))
+			priority_announcement.Announce(replacetext(replacetext(current_map.shuttle_docked_message, "%dock%", "[current_map.dock_name]"), "%ETA%", "[estimated_time] минуты"), new_sound = sound('sound/AI/shuttle_docked_message.ogg'))
 
 /datum/evacuation_controller/proc/launch_evacuation()
 	if(waiting_to_leave())
@@ -143,11 +143,11 @@ var/datum/evacuation_controller/evacuation_controller
 
 	switch(evacuation_type)
 		if(TRANSFER_EMERGENCY)
-			priority_announcement.Announce(replacetext(replacetext(current_map.emergency_shuttle_leaving_dock, "%dock%", "[current_map.dock_name]"),  "%ETA%", "[round(get_eta()/60,1)] minute\s"), new_sound = sound('sound/AI/emergency_shuttle_leaving_dock.ogg'))
+			priority_announcement.Announce(replacetext(replacetext(current_map.emergency_shuttle_leaving_dock, "%dock%", "[current_map.dock_name]"),  "%ETA%", "[round(get_eta()/60,1)] минуты"), new_sound = sound('sound/AI/emergency_shuttle_leaving_dock.ogg'))
 		if(TRANSFER_JUMP)
-			priority_announcement.Announce(replacetext(replacetext(current_map.bluespace_leaving_dock, "%dock%", "[current_map.dock_name]"),  "%ETA%", "[round(get_eta()/60,1)] minute\s"), new_sound = sound('sound/AI/bluespace_jump_leaving.ogg'))
+			priority_announcement.Announce(replacetext(replacetext(current_map.bluespace_leaving_dock, "%dock%", "[current_map.dock_name]"),  "%ETA%", "[round(get_eta()/60,1)] минуты"), new_sound = sound('sound/AI/bluespace_jump_leaving.ogg'))
 		if(TRANSFER_CREW)
-			priority_announcement.Announce(replacetext(replacetext(current_map.shuttle_leaving_dock, "%dock%", "[current_map.dock_name]"),  "%ETA%", "[round(get_eta()/60,1)] minute\s"), new_sound = sound('sound/AI/shuttle_leaving_dock.ogg'))
+			priority_announcement.Announce(replacetext(replacetext(current_map.shuttle_leaving_dock, "%dock%", "[current_map.dock_name]"),  "%ETA%", "[round(get_eta()/60,1)] минуты"), new_sound = sound('sound/AI/shuttle_leaving_dock.ogg'))
 
 	return TRUE
 
