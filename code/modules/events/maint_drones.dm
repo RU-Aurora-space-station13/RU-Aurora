@@ -19,12 +19,12 @@
 	var/naming
 	switch(severity)
 		if(EVENT_LEVEL_MUNDANE)
-			naming = "minor"
+			naming = "незначительный"
 		if(EVENT_LEVEL_MODERATE)
-			naming = "serious"
+			naming = "серьёзный"
 		if(EVENT_LEVEL_MAJOR)
-			naming = "major"
-	command_announcement.Announce("A [naming] maintenance drone hijacking has occurred. The hacked drones are aggressive and dangerous. Caution is advised when entering maintenance tunnels.", "Drone Behaviour Control", zlevels = affecting_z)
+			naming = "беспрецедентный"
+	command_announcement.Announce("Внимание экипажу: [naming] сбой в работе дронов. Фиксирую агрессивное поведение среди сбойных единиц. Избегайте перемещения по техническим тоннелям.", "Мониторинг дронов", zlevels = affecting_z)
 
 /datum/event/rogue_maint_drones/proc/get_infestation_turfs()
 	var/area/location = pick_area(list(/proc/is_not_space_area, /proc/is_station_area, /proc/is_maint_area))
