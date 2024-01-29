@@ -146,9 +146,9 @@
 
 /datum/category_item/player_setup_item/general/equipment/content(var/mob/user)
 	. = list()
-	. += "<b>Equipment:</b><br>"
+	. += "<b>Одежда:</b><br>"
 	for(var/datum/category_group/underwear/UWC in global_underwear.categories)
-		var/item_name = pref.all_underwear[UWC.name] ? pref.all_underwear[UWC.name] : "None"
+		var/item_name = pref.all_underwear[UWC.name] ? pref.all_underwear[UWC.name] : "Нет"
 		. += "[UWC.name]: <a href='?src=\ref[src];change_underwear=[UWC.name]'><b>[item_name]</b></a>"
 
 		var/datum/category_item/underwear/UWI = UWC.items_by_name[item_name]
@@ -158,15 +158,15 @@
 
 		. += "<br>"
 
-	. += "Backpack Type: <a href='?src=\ref[src];change_backpack=1'><b>[GLOB.backbaglist[pref.backbag]]</b></a><br>"
-	. += "Backpack Style: <a href='?src=\ref[src];change_backpack_style=1'><b>[GLOB.backbagstyles[pref.backbag_style]]</b></a><br>"
+	. += "Рюкзак: <a href='?src=\ref[src];change_backpack=1'><b>[GLOB.backbaglist[pref.backbag]]</b></a><br>"
+	. += "Вид рюкзака: <a href='?src=\ref[src];change_backpack_style=1'><b>[GLOB.backbagstyles[pref.backbag_style]]</b></a><br>"
 	if(pref.backbag == OUTFIT_SATCHEL_ALT || pref.backbag == OUTFIT_RUCKSACK || pref.backbag == OUTFIT_POCKETBOOK) // Hardcoded. Sucks, I know.
-		. += "Backpack Color: <a href='?src=\ref[src];change_backpack_color=1'><b>[GLOB.backbagcolors[pref.backbag_color]]</b></a><br>"
-	. += "Backpack Strap: <a href='?src=\ref[src];change_backbag_strap=1'><b>[GLOB.backbagstrap[pref.backbag_strap]]</b></a><br>"
-	. += "PDA Type: <a href='?src=\ref[src];change_pda=1'><b>[GLOB.pdalist[pref.pda_choice]]</b></a><br>"
-	. += "Headset Type: <a href='?src=\ref[src];change_headset=1'><b>[GLOB.headsetlist[pref.headset_choice]]</b></a><br>"
-	. += "Primary Radio Slot: <a href='?src=\ref[src];change_radio_slot=1'><b>[pref.primary_radio_slot]</b></a><br>"
-	. += "Suit Sensor Setting: <a href='?src=\ref[src];change_sensor_setting=1'><b>[pref.sensor_setting]</b></a><br/>"
+		. += "Цвет рюкзака: <a href='?src=\ref[src];change_backpack_color=1'><b>[GLOB.backbagcolors[pref.backbag_color]]</b></a><br>"
+	. += "Лямка: <a href='?src=\ref[src];change_backbag_strap=1'><b>[GLOB.backbagstrap[pref.backbag_strap]]</b></a><br>"
+	. += "КПК: <a href='?src=\ref[src];change_pda=1'><b>[GLOB.pdalist[pref.pda_choice]]</b></a><br>"
+	. += "Рация: <a href='?src=\ref[src];change_headset=1'><b>[GLOB.headsetlist[pref.headset_choice]]</b></a><br>"
+	. += "Слот рации: <a href='?src=\ref[src];change_radio_slot=1'><b>[pref.primary_radio_slot]</b></a><br>"
+	. += "Сенсоры: <a href='?src=\ref[src];change_sensor_setting=1'><b>[pref.sensor_setting]</b></a><br/>"
 
 	return jointext(., null)
 
@@ -188,49 +188,49 @@
 
 /datum/category_item/player_setup_item/general/equipment/OnTopic(var/href,var/list/href_list, var/mob/user)
 	if(href_list["change_backpack"])
-		var/new_backbag = tgui_input_list(user, "Choose your character's bag type.", "Character Preference", GLOB.backbaglist, GLOB.backbaglist[pref.backbag])
+		var/new_backbag = tgui_input_list(user, "Выберите рюкзак.", "Настройки", GLOB.backbaglist, GLOB.backbaglist[pref.backbag])
 		if(!isnull(new_backbag) && CanUseTopic(user))
 			pref.backbag = GLOB.backbaglist.Find(new_backbag)
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["change_backpack_style"])
-		var/new_backbag = tgui_input_list(user, "Choose your character's style of bag.", "Character Preference", GLOB.backbagstyles, GLOB.backbagstyles[pref.backbag_style])
+		var/new_backbag = tgui_input_list(user, "Выберите вид рюкзака.", "Настройки", GLOB.backbagstyles, GLOB.backbagstyles[pref.backbag_style])
 		if(!isnull(new_backbag) && CanUseTopic(user))
 			pref.backbag_style = GLOB.backbagstyles.Find(new_backbag)
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["change_backpack_color"])
-		var/new_backbag = tgui_input_list(user, "Choose your character's color of bag.", "Character Preference", GLOB.backbagcolors, GLOB.backbagcolors[pref.backbag_color])
+		var/new_backbag = tgui_input_list(user, "Выберите цвет рюкзака.", "Настройки", GLOB.backbagcolors, GLOB.backbagcolors[pref.backbag_color])
 		if(!isnull(new_backbag) && CanUseTopic(user))
 			pref.backbag_color = GLOB.backbagcolors.Find(new_backbag)
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["change_backbag_strap"])
-		var/new_backbag = tgui_input_list(user, "Choose your character's style of bag strap.", "Character Preference", GLOB.backbagstrap, GLOB.backbagstrap[pref.backbag_strap])
+		var/new_backbag = tgui_input_list(user, "Выберите лямку.", "Настройки", GLOB.backbagstrap, GLOB.backbagstrap[pref.backbag_strap])
 		if(!isnull(new_backbag) && CanUseTopic(user))
 			pref.backbag_strap = GLOB.backbagstrap.Find(new_backbag)
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["change_pda"])
-		var/new_pda = tgui_input_list(user, "Choose your character's PDA type.", "Character Preference", GLOB.pdalist, GLOB.pdalist[pref.pda_choice])
+		var/new_pda = tgui_input_list(user, "Выберите КПК.", "Настройки", GLOB.pdalist, GLOB.pdalist[pref.pda_choice])
 		if(!isnull(new_pda) && CanUseTopic(user))
 			pref.pda_choice = GLOB.pdalist.Find(new_pda)
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["change_headset"])
-		var/new_headset = tgui_input_list(user, "Choose your character's headset type.", "Character Preference", GLOB.headsetlist, GLOB.headsetlist[pref.headset_choice])
+		var/new_headset = tgui_input_list(user, "Выберите рацию.", "Настройки", GLOB.headsetlist, GLOB.headsetlist[pref.headset_choice])
 		if(!isnull(new_headset) && CanUseTopic(user))
 			pref.headset_choice = GLOB.headsetlist.Find(new_headset)
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["change_radio_slot"])
-		var/new_slot = tgui_input_list(user, "Choose which radio will be spoken into first if multiple slots are occupied.", "Character Preference", GLOB.primary_radio_slot_choice, pref.primary_radio_slot)
+		var/new_slot = tgui_input_list(user, "Выберите, в какую рацию будет говорить персонаж, если оба слота заняты.", "Настройки", GLOB.primary_radio_slot_choice, pref.primary_radio_slot)
 		if(!isnull(new_slot) && CanUseTopic(user))
 			pref.primary_radio_slot = new_slot
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["change_sensor_setting"])
-		var/new_sensor = tgui_input_list(user, "Select a sensor mode.", "Character Preference", SUIT_SENSOR_MODES, pref.sensor_setting)
+		var/new_sensor = tgui_input_list(user, "Выберите режим сенсоров.", "Настройки персонажа", SUIT_SENSOR_MODES, pref.sensor_setting)
 		if(!isnull(new_sensor) && CanUseTopic(user))
 			pref.sensor_setting = new_sensor
 			return TOPIC_REFRESH_UPDATE_PREVIEW
@@ -239,7 +239,7 @@
 		var/datum/category_group/underwear/UWC = global_underwear.categories_by_name[href_list["change_underwear"]]
 		if(!UWC)
 			return TOPIC_NOACTION
-		var/datum/category_item/underwear/selected_underwear = tgui_input_list(user, "Choose underwear:", "Character Preference", UWC.items, pref.all_underwear[UWC.name])
+		var/datum/category_item/underwear/selected_underwear = tgui_input_list(user, "Выберите нижнее бельё:", "Настройки", UWC.items, pref.all_underwear[UWC.name])
 		if(selected_underwear && CanUseTopic(user))
 			pref.all_underwear[UWC.name] = selected_underwear.name
 		return TOPIC_REFRESH_UPDATE_PREVIEW

@@ -57,7 +57,7 @@
 
 	if (pref.alternate_languages.len > S.num_alternate_languages)
 		if(pref.client)
-			to_chat(pref.client, "<span class='warning'>You have too many languages saved for [pref.species].<br><b>The list has been reset. Please check your languages in character creation!</b></span>")
+			to_chat(pref.client, "<span class='warning'>У вас выбрано слишком много языков для вашей расы.<br><b>Список был обнулён, пожалуйста проверьте его!</b></span>")
 		pref.alternate_languages.Cut()
 		return
 
@@ -70,18 +70,18 @@
 	var/list/bad_langs = pref.alternate_languages - langs
 	if (bad_langs.len)
 		if(pref.client)
-			to_chat(pref.client, "<span class='warning'>[bad_langs.len] invalid language\s were found in your character setup! Please save your character again to stop this error from repeating!</span>")
+			to_chat(pref.client, "<span class='warning'>У вас выбраны недоступные языки! Пожалуйста, сохраните персонажа ещё раз чтобы решить проблему!</span>")
 
 		for (var/L in bad_langs)
 			if(pref.client)
-				to_chat(pref.client, "<span class='notice'>Removing the language \"[L]\" from your character.</span>")
+				to_chat(pref.client, "<span class='notice'>Язык \"[L]\" был удалён.</span>")
 			pref.alternate_languages -= L
 
 		var/datum/category_group/player_setup_category/cat = category
 		cat.modified = TRUE
 
 /datum/category_item/player_setup_item/general/language/content(var/mob/user)
-	var/list/dat = list("<b>Languages</b><br>")
+	var/list/dat = list("<b>Языки</b><br>")
 	var/datum/species/S = GLOB.all_species[pref.species]
 	if(S.language)
 		dat += "- [S.language]<br>"
@@ -91,17 +91,17 @@
 		if(pref.alternate_languages.len)
 			for(var/i = 1 to pref.alternate_languages.len)
 				var/lang = pref.alternate_languages[i]
-				dat += "- [lang] - <a href='?src=\ref[src];remove_language=[i]'>remove</a><br>"
+				dat += "- [lang] - <a href='?src=\ref[src];remove_language=[i]'>убрать</a><br>"
 
 		if(pref.alternate_languages.len < S.num_alternate_languages)
-			dat += "- <a href='?src=\ref[src];add_language=1'>add</a> ([S.num_alternate_languages - pref.alternate_languages.len] remaining)<br>"
+			dat += "- <a href='?src=\ref[src];add_language=1'>add</a> ([S.num_alternate_languages - pref.alternate_languages.len] осталось)<br>"
 	else
-		dat += "- [pref.species] cannot choose secondary languages.<br>"
+		dat += "- ваша раса не может выбирать другие языки.<br>"
 
 	if(S.has_autohiss)
 		pref.autohiss_setting = clamp(pref.autohiss_setting, AUTOHISS_OFF, AUTOHISS_NUM - 1)
-		var/list/autohiss_to_word = list("Disabled", "Basic", "Full")
-		dat += "<br><a href='?src=\ref[src];autohiss=1'>Autohiss: [autohiss_to_word[pref.autohiss_setting + 1]]</a><br>"
+		var/list/autohiss_to_word = list("Отключён", "Базовый", "Полный")
+		dat += "<br><a href='?src=\ref[src];autohiss=1'>Акцент: [autohiss_to_word[pref.autohiss_setting + 1]]</a><br>"
 
 	. = dat.Join()
 
@@ -115,7 +115,7 @@
 	else if(href_list["add_language"])
 		var/datum/species/S = GLOB.all_species[pref.species]
 		if(pref.alternate_languages.len >= S.num_alternate_languages)
-			alert(user, "You have already selected the maximum number of alternate languages for this species!")
+			alert(user, "У вас выбрано максимальное количество языков для вашей расы!")
 		else
 			var/list/available_languages = S.secondary_langs.Copy()
 			for(var/L in GLOB.all_languages)
@@ -129,12 +129,12 @@
 			available_languages -= pref.alternate_languages
 
 			if(!available_languages.len)
-				alert(user, "There are no additional languages available to select.")
+				alert(user, "Вы выбрали все возможные языки.")
 			else
-				var/new_lang = input(user, "Select an additional language", "Character Generation", null) as null|anything in available_languages
+				var/new_lang = input(user, "Выберите дополнительный язык", "Настройки", null) as null|anything in available_languages
 				if(new_lang)
 					if (pref.alternate_languages.len >= S.num_alternate_languages)
-						alert(user, "You have already selected the maximum number of alternate languages for this species!")
+						alert(user, "У вас выбрано максимальное количество языков для вашей расы!")
 					else
 						pref.alternate_languages |= new_lang
 					return TOPIC_REFRESH
