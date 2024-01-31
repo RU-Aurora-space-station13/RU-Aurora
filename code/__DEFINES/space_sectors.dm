@@ -29,7 +29,7 @@
 #define ALL_COALITION_SECTORS	list(SECTOR_COALITION, SECTOR_WEEPING_STARS, SECTOR_ARUSHA, SECTOR_LIBERTYS_CRADLE, SECTOR_BURZSIA, SECTOR_HANEUNIM)
 
 //Light's edge, which should have unique properties all around
-#define SECTOR_LIGHTS_EDGE			"Конец Света"	//For the area of Light's Edge that is somewhat inhabited
+#define SECTOR_LIGHTS_EDGE			"Край Света"	//For the area of Light's Edge that is somewhat inhabited
 #define SECTOR_LEMURIAN_SEA			"Море Лемур"	//For the actual black void area
 #define ALL_VOID_SECTORS		list(SECTOR_LIGHTS_EDGE, SECTOR_LEMURIAN_SEA)
 

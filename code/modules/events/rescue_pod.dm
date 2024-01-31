@@ -5,7 +5,7 @@
 
 /datum/event/rescue_pod/announce()
 	if(prob(66))
-		command_announcement.Announce("Ship sensors indicate an escape pod inbound to a nearby celestial body. Investigate the situation if necessary and hand off the survivors, if any, to a third party vessel.", new_title="SCCV Horizon Sensor Suite", new_sound = 'sound/AI/commandreport.ogg', zlevels = affecting_z)
+		command_announcement.Announce("Внимание экипажу: Зафиксировано прибытие спасательной капсулы на орбиту небесного тела.", new_title="Сенсоры SCCV Горизонт", new_sound = 'sound/AI/commandreport.ogg', zlevels = affecting_z)
 
 /datum/event/rescue_pod/setup()
 	for(var/datum/event/E in typesof(src))

@@ -7,7 +7,7 @@
 
 /datum/event/wallrot/announce()
 	if(origin_turf)
-		command_announcement.Announce("Harmful fungi detected at coordinates ([origin_turf.x], [origin_turf.y], [origin_turf.z]). The structure may be contaminated.", "Biohazard Alert", new_sound = 'sound/AI/fungi.ogg', zlevels = affecting_z)
+		command_announcement.Announce("Внимание экипажу: коррозийный грибок обнаружен по координатам ([origin_turf.x], [origin_turf.y], [origin_turf.z]).", "Биологическая угроза", new_sound = 'sound/AI/fungi.ogg', zlevels = affecting_z)
 
 /datum/event/wallrot/start()
 	..()

@@ -62,7 +62,7 @@
 /datum/category_item/player_setup_item/general/psionics/sanitize_character(var/sql_load = 0)
 	var/datum/species/mob_species = GLOB.all_species[pref.species]
 	if(length(pref.psionics) && !mob_species.has_psionics)
-		to_chat(pref.client, SPAN_WARNING("This species does not have psionics! Resetting..."))
+		to_chat(pref.client, SPAN_WARNING("У этой расы нед доступа к псионике! Перезагрузка..."))
 		pref.psionics = list()
 		return
 	var/list/bought_psionic_powers = list()
@@ -71,15 +71,15 @@
 		if(istype(P))
 			if(!(P.ability_flags & PSI_FLAG_CANON))
 				pref.psionics -= S
-				to_chat(pref.client, SPAN_WARNING("[P.name] is an invalid psionic!"))
+				to_chat(pref.client, SPAN_WARNING("[P.name] не может быть псиоником!"))
 				continue
 			bought_psionic_powers |= P
 		else
-			to_chat(pref.client, SPAN_WARNING("[S] is an invalid psionic!"))
+			to_chat(pref.client, SPAN_WARNING("[S] не может быть псиоником!"))
 			pref.psionics -= S
 			continue
 	if(length(bought_psionic_powers) > mob_species.character_creation_psi_points)
-		to_chat(pref.client, SPAN_WARNING("You have more psionics than possible! Resetting..."))
+		to_chat(pref.client, SPAN_WARNING("Вы слишком псионический! Перезагрука..."))
 		pref.psionics = list()
 
 /datum/category_item/player_setup_item/general/psionics/content(var/mob/user)
@@ -93,11 +93,11 @@
 			bought_psionic_powers |= P
 
 	var/list/dat = list(
-		"<b>Psionics:</b><br>"
+		"<b>Псионика:</b><br>"
 	)
 	for(var/singleton/psionic_power/P in bought_psionic_powers)
 		dat += "- [P.name] <a href='?src=\ref[src];remove_psi_power=[P.type]'>-</a><br>"
-	dat += "<a href='?src=\ref[src];add_psi_power=1'>Add Psionic Power</a><br>"
+	dat += "<a href='?src=\ref[src];add_psi_power=1'>Добавить способность</a><br>"
 	. = dat.Join()
 
 /datum/category_item/player_setup_item/general/psionics/OnTopic(var/href,var/list/href_list, var/mob/user)
@@ -126,10 +126,10 @@
 				psionic_map[P.name] = P.type
 
 		if(!length(available_psionics))
-			to_chat(user, SPAN_WARNING("You ran out of points!"))
+			to_chat(user, SPAN_WARNING("У вас закончились очки!"))
 			return
 
-		var/new_power = tgui_input_list(user, "Choose a psionic power to add.", "Psionics", available_psionics)
+		var/new_power = tgui_input_list(user, "Выберите способность.", "Псионика", available_psionics)
 		if(new_power)
 			var/singleton/psionic_power/P = GET_SINGLETON(psionic_map[new_power])
 			if(istype(P))

@@ -120,15 +120,15 @@
 
 /datum/category_item/player_setup_item/general/flavor/content(var/mob/user)
 	var/list/dat = list(
-		"<b>Flavor:</b><br>",
-		"<a href='?src=\ref[src];flavor_text=open'>Set Flavor Text</a><br/>",
-		"<a href='?src=\ref[src];flavour_text_robot=open'>Set Robot Flavor Text</a><br/>",
+		"<b>Внешность:</b><br>",
+		"<a href='?src=\ref[src];flavor_text=open'>Изменить</a><br/>",
+		"<a href='?src=\ref[src];flavour_text_robot=open'>Изменить внешность синтетика</a><br/>",
 		"<br>",
-		"Signature: <font face='[pref.signfont ? pref.signfont : "Verdana"]'>[pref.signature]</font><br/>",
-		"<a href='?src=\ref[src];edit_signature=text'>Edit Text</a> | ",
-		"<a href='?src=\ref[src];edit_signature=font'>Edit Font</a> | ",
-		"<a href='?src=\ref[src];edit_signature=help'>Help</a> | ",
-		"<a href='?src=\ref[src];edit_signature=reset'>Reset</a><br/>"
+		"Подпись: <font face='[pref.signfont ? pref.signfont : "Verdana"]'>[pref.signature]</font><br/>",
+		"<a href='?src=\ref[src];edit_signature=text'>Изменить</a> | ",
+		"<a href='?src=\ref[src];edit_signature=font'>Изменить шрифт</a> | ",
+		"<a href='?src=\ref[src];edit_signature=help'>?</a> | ",
+		"<a href='?src=\ref[src];edit_signature=reset'>Сбросить</a><br/>"
 	)
 	. = dat.Join()
 
@@ -137,11 +137,11 @@
 		if(href_list["flavor_text"] != "open")
 			switch(href_list["flavor_text"])
 				if("general")
-					var/msg = sanitize(input(usr,"Give a general description of your character. This will be shown regardless of clothing.","Flavor Text",html_decode(pref.flavor_texts[href_list["flavor_text"]])) as message, extra = 0)
+					var/msg = sanitize(input(usr,"Введите общее описание вашего персонажа. Его будет видно вне зависимости от одежды.","Внешность",html_decode(pref.flavor_texts[href_list["flavor_text"]])) as message, extra = 0)
 					if(CanUseTopic(user))
 						pref.flavor_texts[href_list["flavor_text"]] = msg
 				else
-					var/msg = sanitize(input(usr,"Set the flavor text for your [href_list["flavor_text"]].","Flavor Text",html_decode(pref.flavor_texts[href_list["flavor_text"]])) as message, extra = 0)
+					var/msg = sanitize(input(usr,"Set the flavor text for your [href_list["flavor_text"]].","Внешность",html_decode(pref.flavor_texts[href_list["flavor_text"]])) as message, extra = 0)
 					if(CanUseTopic(user))
 						pref.flavor_texts[href_list["flavor_text"]] = msg
 		SetFlavorText(user)
@@ -151,11 +151,11 @@
 		if(href_list["flavour_text_robot"] != "open")
 			switch(href_list["flavour_text_robot"])
 				if("Default")
-					var/msg = sanitize(input(usr,"Set the default flavour text for your robot. It will be used for any module without individual setting.","Flavour Text",html_decode(pref.flavour_texts_robot["Default"])) as message, extra = 0)
+					var/msg = sanitize(input(usr,"Введите описание внешности вашего синтетика. Без дополнительных настроек, оно будет показано для всех модулей.","Внешность",html_decode(pref.flavour_texts_robot["Default"])) as message, extra = 0)
 					if(CanUseTopic(user))
 						pref.flavour_texts_robot[href_list["flavour_text_robot"]] = msg
 				else
-					var/msg = sanitize(input(usr,"Set the flavour text for your robot with [href_list["flavour_text_robot"]] module. If you leave this empty, default flavour text will be used for this module.","Flavour Text",html_decode(pref.flavour_texts_robot[href_list["flavour_text_robot"]])) as message, extra = 0)
+					var/msg = sanitize(input(usr,"Set the flavour text for your robot with [href_list["flavour_text_robot"]] module. If you leave this empty, default flavour text will be used for this module.","Внешность",html_decode(pref.flavour_texts_robot[href_list["flavour_text_robot"]])) as message, extra = 0)
 					if(CanUseTopic(user))
 						pref.flavour_texts_robot[href_list["flavour_text_robot"]] = msg
 		SetFlavourTextRobot(user)
@@ -164,9 +164,9 @@
 	else if (href_list["edit_signature"])
 		switch (href_list["edit_signature"])
 			if ("text")
-				var/new_sign = tgui_input_text(usr, "Please input the new character signature.", "New Signature", html2pencode(pref.signature))
+				var/new_sign = tgui_input_text(usr, "Пожалуйста, введите новую подпись вашего персонажа.", "Новая подпись", html2pencode(pref.signature))
 				if (!new_sign)
-					to_chat(usr, SPAN_NOTICE("Cancelled."))
+					to_chat(usr, SPAN_NOTICE("Отменяем."))
 					if (pref.signature)
 						return TOPIC_NOACTION
 					else
@@ -178,9 +178,9 @@
 
 				return TOPIC_REFRESH
 			if ("font")
-				var/new_font = tgui_input_list(usr, "Please select the font to use.", "New Font", list("Verdana", "Times New Roman", "Courier New"))
+				var/new_font = tgui_input_list(usr, "Пожалуйста, выберите новый шрифт.", "Шрифт", list("Verdana", "Times New Roman", "Courier New"))
 				if (!new_font)
-					to_chat(usr, SPAN_NOTICE("Cancelled."))
+					to_chat(usr, SPAN_NOTICE("Отменяем."))
 					if (pref.signfont)
 						return TOPIC_NOACTION
 					else
@@ -191,19 +191,19 @@
 				return TOPIC_REFRESH
 			if ("help")
 				var/html = ""
-				html += "A character's signature can be augmented with the following tags:<br>"
-				html += "<ul><li><i>Italics</i> - \[i\]text\[/i\]</li>"
-				html += "<li><b>Bold</b> - \[b\]text\[/b\]</li>"
-				html += "<li><u>Underline</u> - \[u\]text\[/u\]</li>"
-				html += "<li><font size='4'>Large text</font> - \[large\]text\[/large\]</li>"
-				html += "<li><font size='1'>Small text</font> - \[small\]text\[/small\]</li></ul>"
-				html += "<br><br>Beyond that, a maximum of 100 symbols are allowed for the signature text."
-				html += " Note that this includes mark-up symbols."
+				html += "Подпись можно модифицировать следующими тегами:<br>"
+				html += "<ul><li><i>Курсив</i> - \[i\]text\[/i\]</li>"
+				html += "<li><b>Полужирный</b> - \[b\]text\[/b\]</li>"
+				html += "<li><u>Подчерк</u> - \[u\]text\[/u\]</li>"
+				html += "<li><font size='4'>Крупный текст</font> - \[large\]text\[/large\]</li>"
+				html += "<li><font size='1'>Мелкий текст</font> - \[small\]text\[/small\]</li></ul>"
+				html += "<br><br>Подпись не может быть длиннее ста символов."
+				html += " Теги учитываются."
 
 				show_browser(usr, html, "window=signaturehelp;size=350x300")
 				return TOPIC_HANDLED
 			if ("reset")
-				to_chat(usr, SPAN_NOTICE("Signature reset."))
+				to_chat(usr, SPAN_NOTICE("Подпись сброшена."))
 				pref.signfont = "Verdana"
 				pref.signature = "<i>[pref.real_name]</i>"
 				return TOPIC_REFRESH
@@ -213,7 +213,7 @@
 /datum/category_item/player_setup_item/general/flavor/proc/SetFlavorText(mob/user)
 	var/HTML = "<meta charset=\"utf-8\"><body>"
 	HTML += "<tt><center>"
-	HTML += "<b>Set Flavour Text</b> <hr />"
+	HTML += "<b>Изменить внешность</b> <hr />"
 	HTML += "<br></center>"
 	HTML += "<a href='?src=\ref[src];flavor_text=general'>General:</a> "
 	HTML += TextPreview(pref.flavor_texts["general"])
@@ -250,7 +250,7 @@
 /datum/category_item/player_setup_item/general/flavor/proc/SetFlavourTextRobot(mob/user)
 	var/HTML = "<body>"
 	HTML += "<tt><center>"
-	HTML += "<b>Set Robot Flavour Text</b> <hr />"
+	HTML += "<b>Изменить внешность синтетика</b> <hr />"
 	HTML += "<br></center>"
 	HTML += "<a href='?src=\ref[src];flavour_text_robot=Default'>Default:</a> "
 	HTML += TextPreview(pref.flavour_texts_robot["Default"])

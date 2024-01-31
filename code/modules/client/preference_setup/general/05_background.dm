@@ -50,42 +50,42 @@
 	)
 
 /datum/category_item/player_setup_item/general/background/content(var/mob/user)
-	var/list/dat = list("<br/><b>Records</b>:<br/>")
+	var/list/dat = list("<br/><b>Записи</b>:<br/>")
 
 	if(jobban_isbanned(user, "Records"))
-		dat += "<span class='danger'>You are banned from using character records.</span><br>"
+		dat += "<span class='danger'>Вам запрещено редактировать записи персонажа.</span><br>"
 	else
-		dat += "Medical Records:<br>"
+		dat += "Медицинские записи:<br>"
 		dat += "<a href='?src=\ref[src];set_medical_records=1'>[TextPreview(pref.med_record,40)]</a><a href='?src=\ref[src];clear=medical'>Clear</a><br><br>"
-		dat += "Employment Records:<br>"
+		dat += "Записи трудоустройства:<br>"
 		dat += "<a href='?src=\ref[src];set_general_records=1'>[TextPreview(pref.gen_record,40)]</a><a href='?src=\ref[src];clear=general'>Clear</a><br><br>"
-		dat += "Security Records:<br>"
+		dat += "Записи охраны:<br>"
 		dat += "<a href='?src=\ref[src];set_security_records=1'>[TextPreview(pref.sec_record,40)]</a><a href='?src=\ref[src];clear=security'>Clear</a><br>"
 
 	. = dat.Join()
 
 /datum/category_item/player_setup_item/general/background/OnTopic(var/href,var/list/href_list, var/mob/user)
 	if(href_list["set_medical_records"])
-		var/new_medical = sanitize(input(user,"Enter medical information here.","Character Preference", html_decode(pref.med_record)) as message|null, MAX_PAPER_MESSAGE_LEN, extra = 0)
+		var/new_medical = sanitize(input(user,"Введите сюда медицинскую информацию вашего персонажа.","Настройки", html_decode(pref.med_record)) as message|null, MAX_PAPER_MESSAGE_LEN, extra = 0)
 		if(!isnull(new_medical) && !jobban_isbanned(user, "Records") && CanUseTopic(user))
 			pref.med_record = new_medical
 		return TOPIC_REFRESH
 
 	else if(href_list["set_general_records"])
-		var/new_general = sanitize(input(user,"Enter employment information here.","Character Preference", html_decode(pref.gen_record)) as message|null, MAX_PAPER_MESSAGE_LEN, extra = 0)
+		var/new_general = sanitize(input(user,"Введите сюда данные о трудоустройстве вашего персонажа.","Настройки", html_decode(pref.gen_record)) as message|null, MAX_PAPER_MESSAGE_LEN, extra = 0)
 		if(!isnull(new_general) && !jobban_isbanned(user, "Records") && CanUseTopic(user))
 			pref.gen_record = new_general
 		return TOPIC_REFRESH
 
 	else if(href_list["set_security_records"])
-		var/sec_medical = sanitize(input(user,"Enter security information here.","Character Preference", html_decode(pref.sec_record)) as message|null, MAX_PAPER_MESSAGE_LEN, extra = 0)
+		var/sec_medical = sanitize(input(user,"Введите сюда записи охраны о вашем персонаже.","Настройки", html_decode(pref.sec_record)) as message|null, MAX_PAPER_MESSAGE_LEN, extra = 0)
 		if(!isnull(sec_medical) && !jobban_isbanned(user, "Records") && CanUseTopic(user))
 			pref.sec_record = sec_medical
 		return TOPIC_REFRESH
 
 	else if(href_list["clear"])
 		if(!jobban_isbanned(user, "Records") && CanUseTopic(user))
-			if(alert(user, "Are you sure you wish to clear the [capitalize(href_list["clear"])] record?", "Clear Record Confirmation","Yes","No") == "No")
+			if(alert(user, "Вы уверены, что хотите стереть [capitalize(href_list["clear"])] записи?", "Вы уверены?","Да","Нет") == "No")
 				return TOPIC_NOACTION
 			switch(href_list["clear"])
 				if("medical")

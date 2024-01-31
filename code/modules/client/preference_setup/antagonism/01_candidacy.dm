@@ -38,7 +38,7 @@
 
 /datum/category_item/player_setup_item/antagonism/candidacy/content(var/mob/user)
 	var/list/dat = list(
-		"<b>Special Role Availability:</b><br>",
+		"<b>Предпочтения антагонистов:</b><br>",
 		"<table>"
 	)
 	var/is_global_banned = jobban_isbanned(preference_mob(), "Antagonist")
@@ -49,7 +49,7 @@
 		dat += "<tr><td>[antag.role_text]: </td><td>"
 		var/ban_reason = jobban_isbanned(preference_mob(), antag.bantype)
 		if(ban_reason == "AGE WHITELISTED")
-			dat += "<span class='danger'>\[IN [player_old_enough_for_role(preference_mob(), antag.bantype)] DAYS\]</span><br>"
+			dat += "<span class='danger'>\[ЧЕРЕЗ [player_old_enough_for_role(preference_mob(), antag.bantype)] ДНЕЙ\]</span><br>"
 		else if(is_global_banned || ban_reason)
 			dat += "<span class='danger'>\[<a href='?src=\ref[user.client];view_jobban=[is_global_banned ? "Antagonist" : "[antag.bantype]"];'>BANNED</a>\]</span><br>"
 		else if(antag.role_type in pref.be_special_role)
