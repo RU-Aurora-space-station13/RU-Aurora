@@ -164,52 +164,52 @@
 			pref.speech_bubble_type = "normal"
 
 /datum/category_item/player_setup_item/general/basic/content(var/mob/user)
-	var/list/dat = list("<b>Name:</b> ")
+	var/list/dat = list("<b>Имя:</b> ")
 	if (pref.can_edit_name)
 		dat += "<a href='?src=\ref[src];rename=1'><b>[pref.real_name]</b></a><br>"
 	else
 		dat += "<b>[pref.real_name]</b><br> (<a href='?src=\ref[src];namehelp=1'>?</a>)"
 	if (pref.can_edit_name)
-		dat += "(<a href='?src=\ref[src];random_name=1'>Random Name</A>)"
+		dat += "(<a href='?src=\ref[src];random_name=1'>Случайное имя</A>)"
 	dat += "<br>"
-	dat += "<b>Sex:</b> <a href='?src=\ref[src];gender=1'><b>[capitalize(lowertext(pref.gender))]</b></a><br>"
+	dat += "<b>Пол:</b> <a href='?src=\ref[src];gender=1'><b>[capitalize(lowertext(pref.gender))]</b></a><br>"
 	var/datum/species/S = GLOB.all_species[pref.species]
 	if(length(S.selectable_pronouns))
-		dat += "<b>Pronouns:</b> <a href='?src=\ref[src];pronouns=1'><b>[capitalize_first_letters(pref.pronouns)]</b></a><br>"
-	dat += "<b>Age:</b> <a href='?src=\ref[src];age=1'>[pref.age]</a><br>"
-	dat += "<b>Height:</b> <a href='?src=\ref[src];height=1'>[pref.height]</a><br>"
-	dat += "<b>Spawn Point</b>: <a href='?src=\ref[src];spawnpoint=1'>[pref.spawnpoint]</a><br>"
-	dat += "<b>Floating Chat Color:</b> <a href='?src=\ref[src];select_floating_chat_color=1'><b>[pref.floating_chat_color]</b></a><br>"
-	dat += "<b>Speech Bubble Type:</b> <a href='?src=\ref[src];speech_bubble_type=1'><b>[capitalize_first_letters(pref.speech_bubble_type)]</b></a><br>"
+		dat += "<b>Местоимения:</b> <a href='?src=\ref[src];pronouns=1'><b>[capitalize_first_letters(pref.pronouns)]</b></a><br>"
+	dat += "<b>Возраст:</b> <a href='?src=\ref[src];age=1'>[pref.age]</a><br>"
+	dat += "<b>Рост:</b> <a href='?src=\ref[src];height=1'>[pref.height]</a><br>"
+	dat += "<b>Место появления</b>: <a href='?src=\ref[src];spawnpoint=1'>[pref.spawnpoint]</a><br>"
+	dat += "<b>Цвет текста:</b> <a href='?src=\ref[src];select_floating_chat_color=1'><b>[pref.floating_chat_color]</b></a><br>"
+	dat += "<b>Тип облачка:</b> <a href='?src=\ref[src];speech_bubble_type=1'><b>[capitalize_first_letters(pref.speech_bubble_type)]</b></a><br>"
 	if(istype(S, /datum/species/machine))
 		if(pref.can_edit_ipc_tag)
-			dat += "<b>Has Tag:</b> <a href='?src=\ref[src];ipc_tag=1'>[pref.machine_tag_status ? "Yes" : "No"]</a><br>"
+			dat += "<b>Имеет чип:</b> <a href='?src=\ref[src];ipc_tag=1'>[pref.machine_tag_status ? "Да" : "Нет"]</a><br>"
 		else
-			dat += "<b>Has Tag:</b> [pref.machine_tag_status ? "Yes" : "No"] (<a href='?src=\ref[src];namehelp=1'>?</a>)<br>"
+			dat += "<b>Имеет чип:</b> [pref.machine_tag_status ? "Да" : "Нет"] (<a href='?src=\ref[src];namehelp=1'>?</a>)<br>"
 		if(pref.machine_tag_status)
 			if(!pref.machine_serial_number)
 				var/generated_serial = uppertext(dd_limittext(md5(pref.real_name), 12))
 				pref.machine_serial_number = generated_serial
 			if(pref.can_edit_ipc_tag)
-				dat += "<b>Serial Number:</b> <a href='?src=\ref[src];serial_number=1'>[pref.machine_serial_number]</a><br>"
-				dat += "(<a href='?src=\ref[src];generate_serial=1'>Generate Serial Number</A>)<br>"
-				dat += "<b>Ownership Status:</b> <a href='?src=\ref[src];ownership_status=1'>[pref.machine_ownership_status]</a><br>"
+				dat += "<b>Серийный номер:</b> <a href='?src=\ref[src];serial_number=1'>[pref.machine_serial_number]</a><br>"
+				dat += "(<a href='?src=\ref[src];generate_serial=1'>Сгенерировать</A>)<br>"
+				dat += "<b>Владелец:</b> <a href='?src=\ref[src];ownership_status=1'>[pref.machine_ownership_status]</a><br>"
 			else
-				dat += "<b>Serial Number:</b> [pref.machine_serial_number] (<a href='?src=\ref[src];namehelp=1'>?</a>)<br>"
-				dat += "<b>Ownership Status:</b> [pref.machine_ownership_status] (<a href='?src=\ref[src];namehelp=1'>?</a>)<br>"
+				dat += "<b>Серийный номер:</b> [pref.machine_serial_number] (<a href='?src=\ref[src];namehelp=1'>?</a>)<br>"
+				dat += "<b>Владелец:</b> [pref.machine_ownership_status] (<a href='?src=\ref[src];namehelp=1'>?</a>)<br>"
 	if(GLOB.config.allow_Metadata)
-		dat += "<b>OOC Notes:</b> <a href='?src=\ref[src];metadata=1'> Edit </a><br>"
+		dat += "<b>OOC заметки:</b> <a href='?src=\ref[src];metadata=1'> Edit </a><br>"
 
 	. = dat.Join()
 
 /datum/category_item/player_setup_item/general/basic/OnTopic(var/href,var/list/href_list, var/mob/user)
 	if(href_list["rename"])
 		if (!pref.can_edit_name)
-			alert(user, "You can no longer edit the name of your character.<br><br>If there is a legitimate need, please contact an administrator regarding the matter.")
+			alert(user, "Вы больше не можете изменять имя этого персонажа.<br><br>Свяжитесь с администратором, если в этом есть необходимость.")
 			return TOPIC_NOACTION
 
 		var/current_character = pref.current_character
-		var/raw_name = input(user, "Choose your character's name:", "Character Name")  as text|null
+		var/raw_name = input(user, "Введите новое имя:", "Имя персонажа")  as text|null
 		if(current_character != pref.current_character) //Without this, you can switch slots while the input menu is up to change your character's name past the grace period
 			return
 		if (!isnull(raw_name) && CanUseTopic(user))
@@ -224,29 +224,29 @@
 					query.NextRow()
 					var/count = text2num(query.item[1])
 					if(count > 0)
-						to_chat(user, SPAN_WARNING("Invalid name. You have already used this name for another character. If you have deleted the character contact an admin to restore it."))
+						to_chat(user, SPAN_WARNING("Неподходящее имя. Вы уже использовали это имя для другого персонажа. Если вы его удалили, свяжитесь с администратором чтобы его восстановить."))
 						return TOPIC_NOACTION
 
 				pref.real_name = new_name
 				return TOPIC_REFRESH
 			else
-				to_chat(user, SPAN_WARNING("Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and ."))
+				to_chat(user, SPAN_WARNING("Неподходящее имя. Имя должно быть длиной от 2 до [MAX_NAME_LEN] символов. Оно может содержать только символы A-Z, a-z, -, ' и ."))
 				return TOPIC_NOACTION
 
 	else if(href_list["namehelp"])
-		alert(user, "Due to game mechanics, you are no longer able to edit this information for this character. The grace period offered is 5 days since the character's initial save.\n\nIf you have a need to change the character's information, or further questions regarding this policy, please contact an administrator.")
+		alert(user, "Вы больше не можете менять имя этого персонажа. Период редактуры для новых персонажей составляет пять дней.\n\nЕсли вам нужно изменить имя персонажа или у вас есть вопросы по поводу этого, свяжитесь с администратором.")
 		return TOPIC_NOACTION
 
 	else if(href_list["random_name"])
 		if (!pref.can_edit_name)
-			alert(user, "You can no longer edit the name of your character.\n\nIf there is a legitimate need, please contact an administrator regarding the matter.")
+			alert(user, "Вы больше не можете менять имя этого персонажа.\n\nСвяжитесь с администратором, если в этом есть необходимость.")
 			return TOPIC_NOACTION
 
 		pref.real_name = random_name(pref.gender, pref.species)
 		return TOPIC_REFRESH
 
 	else if(href_list["select_floating_chat_color"])
-		var/new_fc_color = input(user, "Choose Floating Chat Color:", "Global Preference") as color|null
+		var/new_fc_color = input(user, "Выберите цвет текста над головой:", "Настройки") as color|null
 		if(new_fc_color && CanUseTopic(user))
 			pref.floating_chat_color = new_fc_color
 			var/mob/living/carbon/human/H = preference_mob()
@@ -273,21 +273,21 @@
 		var/selectable_pronouns = list() // this only exists to uppercase the first letters, otherwise it is uggo
 		for(var/pronoun in S.selectable_pronouns)
 			selectable_pronouns += capitalize_first_letters(pronoun)
-		var/new_pronouns = input(usr, "Select how your characters will appear to others when examined.", "Pronoun Selection") as null|anything in selectable_pronouns
+		var/new_pronouns = input(usr, "Выберите местоимения, применяемые к вашему персонажу.", "Выбор местоимений") as null|anything in selectable_pronouns
 		if(!new_pronouns)
 			return
 		pref.pronouns = lowertext(new_pronouns)
 		return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["age"])
-		var/new_age = input(user, "Choose your character's age:\n([pref.getMinAge()]-[pref.getMaxAge()])", "Character Preference", pref.age) as num|null
+		var/new_age = input(user, "Выберите возраст персонажа:\n([pref.getMinAge()]-[pref.getMaxAge()])", "Настройки", pref.age) as num|null
 		if(new_age && CanUseTopic(user))
 			pref.age = max(min(round(text2num(new_age)),  pref.getMaxAge()),pref.getMinAge())
 			return TOPIC_REFRESH
 
 	else if(href_list["height"])
 		var/datum/species/char_spec = GLOB.all_species[pref.species]
-		var/new_height = input(user, "Choose your character's height: (Values in Centimetres. [char_spec.name] height range [pref.getMinHeight()] - [pref.getMaxHeight()])", "Character Preference", pref.height) as num|null
+		var/new_height = input(user, "Введите рост вашего персонажа: (В сантиметрах. Ранжирование для вашей расы - от [pref.getMinHeight()] до [pref.getMaxHeight()])", "Настройки", pref.height) as num|null
 		if(new_height && CanUseTopic(user))
 			pref.height = max(min(round(text2num(new_height)),  pref.getMaxHeight()),pref.getMinHeight())
 			return TOPIC_REFRESH
@@ -296,24 +296,24 @@
 		var/list/spawnkeys = list()
 		for(var/S in SSatlas.spawn_locations)
 			spawnkeys += S
-		var/choice = input(user, "Where would you like to spawn when late-joining?") as null|anything in spawnkeys
+		var/choice = input(user, "Где вы хотите появляться при заходе после начала раунда?") as null|anything in spawnkeys
 		if(!choice || !SSatlas.spawn_locations[choice] || !CanUseTopic(user))	return TOPIC_NOACTION
 		pref.spawnpoint = choice
 		return TOPIC_REFRESH
 
 	else if(href_list["metadata"])
-		var/new_metadata = sanitize(input(user, "Enter any information you'd like others to see, such as Roleplay-preferences:", "Game Preference" , pref.metadata) as message|null)
+		var/new_metadata = sanitize(input(user, "Введите любую информацию, которую сочтёте нужной, например желаемую роль при отыгрыше:", "Настройки" , pref.metadata) as message|null)
 		if(new_metadata && CanUseTopic(user))
 			pref.metadata = sanitize(new_metadata)
 			return TOPIC_REFRESH
 
 	else if(href_list["ipc_tag"])
 		if(!pref.can_edit_ipc_tag)
-			to_chat(usr, SPAN_WARNING("You are unable to edit your IPC tag due to a timelock restriction. If you got here, it is either a hack or a bug."))
+			to_chat(usr, SPAN_WARNING("Вы не можете настраивать свой чип. Скорее всего, это баг."))
 			return
-		var/choice = alert(user, "Do you wish for your IPC to have a tag?\n\nWARNING: Being an untagged IPC in Tau space is highly illegal!", "IPC Tag", "Yes", "No")
+		var/choice = alert(user, "Вы хотите быть ИПС без чипа?\n\nВНИМАНИЕ: Отсутствие чипа в пространстве Тау Киты крайне незаконно!", "Чип ИПС", "Да", "Нет")
 		if(CanUseTopic(user))
-			if(choice == "Yes")
+			if(choice == "Нет")
 				pref.machine_tag_status = TRUE
 			else
 				pref.machine_tag_status = FALSE
@@ -321,9 +321,9 @@
 
 	else if(href_list["serial_number"])
 		if(!pref.can_edit_ipc_tag)
-			to_chat(usr, SPAN_WARNING("You are unable to edit your IPC tag due to a timelock restriction. If you got here, it is either a hack or a bug."))
+			to_chat(usr, SPAN_WARNING("Вы не можете настраивать свой чип. Скорее всего, это баг."))
 			return
-		var/new_serial_number = sanitize(input(user, "Enter what you want to set your serial number to.", "IPC Serial Number", pref.machine_serial_number) as message|null)
+		var/new_serial_number = sanitize(input(user, "Введите свой серийный номер.", "Серийный номер ИПС", pref.machine_serial_number) as message|null)
 		new_serial_number = uppertext(dd_limittext(new_serial_number, 12))
 		if(new_serial_number && CanUseTopic(user))
 			pref.machine_serial_number = sanitize(new_serial_number)
@@ -331,7 +331,7 @@
 
 	else if(href_list["generate_serial"])
 		if(!pref.can_edit_ipc_tag)
-			to_chat(usr, SPAN_WARNING("You are unable to edit your IPC tag due to a timelock restriction. If you got here, it is either a hack or a bug."))
+			to_chat(usr, SPAN_WARNING("Вы не можете настраивать свой чип. Скорее всего, это баг."))
 			return
 		if(pref.real_name)
 			var/generated_serial = uppertext(dd_limittext(md5(pref.real_name), 12))
@@ -340,10 +340,10 @@
 
 	else if(href_list["ownership_status"])
 		if(!pref.can_edit_ipc_tag)
-			to_chat(usr, SPAN_WARNING("You are unable to edit your IPC tag due to a timelock restriction. If you got here, it is either a hack or a bug."))
+			to_chat(usr, SPAN_WARNING("Вы не можете настраивать свой чип. Скорее всего, это баг."))
 			return
 		var/static/list/ownership_options = list(IPC_OWNERSHIP_COMPANY, IPC_OWNERSHIP_PRIVATE, IPC_OWNERSHIP_SELF)
-		var/new_ownership_status = input(user, "Choose your IPC's ownership status.", "IPC Ownership Status") as null|anything in ownership_options
+		var/new_ownership_status = input(user, "Выберите своего владельца.", "Владелец ИПС") as null|anything in ownership_options
 		if(new_ownership_status && CanUseTopic(user))
 			pref.machine_ownership_status = new_ownership_status
 			return TOPIC_REFRESH

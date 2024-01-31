@@ -28,7 +28,7 @@
 		our_sound = possible_sounds[message_index]
 	else
 		our_sound = possible_sounds[1]
-	command_announcement.Announce(message, "Rogue Drone Alert", new_sound = our_sound, zlevels = affecting_z)
+	command_announcement.Announce(message, "Тревога: Сбойные дроны", new_sound = our_sound, zlevels = affecting_z)
 
 /datum/event/rogue_drone/end(var/faked)
 	..()
@@ -42,6 +42,6 @@
 
 	if(!faked)
 		if(num_recovered > length(drones_list) * 0.75)
-			command_announcement.Announce(current_map.rogue_drone_end_message, "Rogue Drone Alert", new_sound = 'sound/AI/rogue_drone_end_message.ogg', zlevels = affecting_z)
+			command_announcement.Announce(current_map.rogue_drone_end_message, "Тревога: Сбойные дроны", new_sound = 'sound/AI/rogue_drone_end_message.ogg', zlevels = affecting_z)
 		else
-			command_announcement.Announce(current_map.rogue_drone_destroyed_message, "Rogue Drone Alert", new_sound = 'sound/AI/rogue_drone_destroyed_message.ogg', zlevels = affecting_z)
+			command_announcement.Announce(current_map.rogue_drone_destroyed_message, "Тревога: Сбойные дроны", new_sound = 'sound/AI/rogue_drone_destroyed_message.ogg', zlevels = affecting_z)

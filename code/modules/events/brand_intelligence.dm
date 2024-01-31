@@ -8,7 +8,7 @@
 
 
 /datum/event/brand_intelligence/announce()
-	command_announcement.Announce("Rampant brand intelligence has been detected aboard the [location_name()]. The origin is believed to be \a \"[initial(originMachine.name)]\" type. Infection of other machines is likely.", "[station_name()] Machine Monitoring" , new_sound = 'sound/AI/brandintelligence.ogg', zlevels = affecting_z)
+	command_announcement.Announce("Внимание экипажу: Сбой поведенческих настроек. Источник: [initial(originMachine.name)].", "Системы слежения [station_name()]" , new_sound = 'sound/AI/brandintelligence.ogg', zlevels = affecting_z)
 
 
 /datum/event/brand_intelligence/start()

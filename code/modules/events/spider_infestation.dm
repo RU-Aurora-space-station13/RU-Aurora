@@ -3,7 +3,7 @@
 /datum/event/spider_infestation
 	announceWhen	= 90
 	var/spawncount = 1
-	ic_name = "unidentified lifesigns"
+	ic_name = "неопознанные организмы"
 	var/list/possible_spiders
 
 /datum/event/spider_infestation/setup()
@@ -13,7 +13,7 @@
 	possible_spiders = typesof(/mob/living/simple_animal/hostile/giant_spider)
 
 /datum/event/spider_infestation/announce()
-	command_announcement.Announce("Unidentified lifesigns detected coming aboard [station_name()]. Secure any exterior access, including ducting and ventilation.", "Lifesign Alert", new_sound = 'sound/AI/aliens.ogg', zlevels = affecting_z)
+	command_announcement.Announce("Внимание экипажу: обнаружены инородные организмы. Избегайте распространение во вне.", "Биологические сенсоры", new_sound = 'sound/AI/aliens.ogg', zlevels = affecting_z)
 
 /datum/event/spider_infestation/start()
 	..()

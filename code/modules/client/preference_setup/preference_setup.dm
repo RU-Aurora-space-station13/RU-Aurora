@@ -19,38 +19,38 @@
 #endif
 
 /datum/category_group/player_setup_category/general_preferences
-	name = "General"
+	name = "Внешность"
 	sort_order = 1
 	category_item_type = /datum/category_item/player_setup_item/general
 
 /datum/category_group/player_setup_category/origin
-	name = "Origin"
+	name = "Происхождение"
 	sort_order = 2
 	category_item_type = /datum/category_item/player_setup_item/origin
 
 /datum/category_group/player_setup_category/occupation_preferences
-	name = "Occupation"
+	name = "Должность"
 	sort_order = 3
 	category_item_type = /datum/category_item/player_setup_item/occupation
 
 /datum/category_group/player_setup_category/appearance_preferences
-	name = "Roles"
+	name = "Антагонисты"
 	sort_order = 4
 	category_item_type = /datum/category_item/player_setup_item/antagonism
 
 /datum/category_group/player_setup_category/loadout_preferences
-	name = "Loadout"
+	name = "Личные вещи"
 	sort_order = 5
 	category_item_type = /datum/category_item/player_setup_item/loadout
 
 /datum/category_group/player_setup_category/global_preferences
-	name = "Global"
+	name = "Настройки"
 	sort_order = 6
 	category_item_type = /datum/category_item/player_setup_item/player_global
 	sql_role = SQL_PREFERENCES
 
 /datum/category_group/player_setup_category/other_preferences
-	name = "Other"
+	name = "Канон"
 	sort_order = 7
 	category_item_type = /datum/category_item/player_setup_item/other
 
