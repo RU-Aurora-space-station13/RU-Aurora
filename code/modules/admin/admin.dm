@@ -339,7 +339,7 @@ var/global/enabled_spooking = 0
 		dat += "<A href='?src=\ref[src];add_player_info=[key]'>Add Comment</A><br>"
 
 		dat += "</body></html>"
-		usr << browse(dat, "window=adminplayerinfo;size=480x480")
+		show_browser(usr, dat, "window=adminplayerinfo;size=480x480")
 	else
 		show_notes_sql(key)
 
@@ -599,7 +599,7 @@ var/global/enabled_spooking = 0
 			dat+="Please report this on GitHub, along with what you did to make this appear."
 
 
-	usr << browse(dat, "window=admincaster_main;size=400x600")
+	show_browser(usr, dat, "window=admincaster_main;size=400x600")
 	onclose(usr, "admincaster_main")
 
 
