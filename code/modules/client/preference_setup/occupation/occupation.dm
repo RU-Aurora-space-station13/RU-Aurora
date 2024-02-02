@@ -140,18 +140,18 @@
 
 /datum/category_item/player_setup_item/occupation/content(mob/user, limit = 16, list/splitJobs = list("Chief Engineer", "Head of Security"))
 	if (!SSjobs.initialized || !SSrecords.initialized)
-		return "<center><large>Jobs controller not initialized yet. Please wait a bit and reload this section.</large></center>"
+		return "<center><large>Игра ещё не прогрузилась. Пожалуйста, закройте это окно и подождите.</large></center>"
 
 	var/list/dat = list(
 		"<style>span.none{color: black} span.low{color: #DDD} span.med{color: yellow} span.high{color: lime} a:hover span{color: #40628a !important}</style>",
-		"<center><b>Character Faction</b><br>",
-		"<small>This will influence the jobs you can select from, and the starting equipment.</small><br>",
+		"<center><b>Фракция персонажа</b><br>",
+		"<small>От этого зависят доступные профессии и ваш внешний вид.</small><br>",
 		"<b><a href='?src=\ref[src];faction_preview=[html_encode(pref.faction)]'>[pref.faction]</a></b></center><br><hr>"
 	)
 
 	dat += list(
 		"<tt><center>",
-		"<b>Choose occupation chances</b><br>Unavailable occupations are crossed out.<br>",
+		"<b>Choose occupation chances</b><br>Недоступные профессии зачёркнуты.<br>",
 		"<table width='100%' cellpadding='1' cellspacing='0'><tr><td width='20%'>", // Table within a table for alignment, also allows you to easily add more colomns.
 		"<table width='100%' cellpadding='1' cellspacing='0'>"
 	)
@@ -171,34 +171,34 @@
 		var/list/available = pref.GetValidTitles(job)
 		var/dispRank = LAZYLEN(available) ? LAZYACCESS(available, 1) : rank
 		var/ban_reason = jobban_isbanned(user, rank)
-		if(ban_reason == "WHITELISTED")
+		if(ban_reason == "ВАЙТЛИСТ")
 			dat += "<del>[dispRank]</del></td><td><b> \[WHITELISTED]</b></td></tr>"
 			continue
 		else if (ban_reason == "AGE WHITELISTED")
 			var/available_in_days = player_old_enough_for_role(user.client, rank)
-			dat += "<del>[dispRank]</del></td><td> \[IN [(available_in_days)] DAYS]</td></tr>"
+			dat += "<del>[dispRank]</del></td><td> \[ЧЕРЕЗ [(available_in_days)] ДНЕЙ]</td></tr>"
 			continue
 		else if(!LAZYLEN(pref.GetValidTitles(job))) // we have no available jobs the character is old enough for
-			dat += "<del>[dispRank]</del></td><td> \[MINIMUM AGE: [LAZYLEN(job.alt_ages) ? min(job.get_alt_character_age(), job.get_minimum_character_age(user.get_species())) : job.get_minimum_character_age(user.get_species())]]</td></tr>"
+			dat += "<del>[dispRank]</del></td><td> \[МИНИМАЛЬНЫЙ ВОЗРАСТ: [LAZYLEN(job.alt_ages) ? min(job.get_alt_character_age(), job.get_minimum_character_age(user.get_species())) : job.get_minimum_character_age(user.get_species())]]</td></tr>"
 			continue
 		if(!(job in faction.get_occupations()))
-			dat += "<del>[dispRank]</del></td><td><b> \[FACTION RESTRICTED]</b></td></tr>"
+			dat += "<del>[dispRank]</del></td><td><b> \[НЕПОДХОДЯЩАЯ ФРАКЦИЯ]</b></td></tr>"
 			continue
 		else if (ban_reason)
-			dat += "<del>[dispRank]</del></td><td><b> \[<a href='?src=\ref[user.client];view_jobban=[rank];'>BANNED</a>]</b></td></tr>"
+			dat += "<del>[dispRank]</del></td><td><b> \[<a href='?src=\ref[user.client];view_jobban=[rank];'>ЗАБЛОКИРОВАН</a>]</b></td></tr>"
 			continue
 		if(job.blacklisted_species) // check for restricted species
 			var/datum/species/S = GLOB.all_species[pref.species]
 			if(S.name in job.blacklisted_species)
-				dat += "<del>[dispRank]</del></td><td><b> \[SPECIES RESTRICTED]</b></td></tr>"
+				dat += "<del>[dispRank]</del></td><td><b> \[НЕПОДХОДЯЩАЯ РАСА]</b></td></tr>"
 				continue
 		var/datum/citizenship/C = SSrecords.citizenships[pref.citizenship]
 		if(C.job_species_blacklist[job.title] && (pref.species in C.job_species_blacklist[job.title]))
-			dat += "<del>[dispRank]</del></td><td><b> \[SPECIES RESTRICTED]</b></td></tr>"
+			dat += "<del>[dispRank]</del></td><td><b> \[НЕПОДХОДЯЩАЯ РАСА]</b></td></tr>"
 			continue
 		if(job.blacklisted_citizenship)
 			if(C.name in job.blacklisted_citizenship)
-				dat += "<del>[dispRank]</del></td><td><b> \[BACKGROUND RESTRICTED]</b></td></tr>"
+				dat += "<del>[dispRank]</del></td><td><b> \[НЕПОДХОДЯЩЕЕ ПРОИСХОЖДЕНИЕ]</b></td></tr>"
 				continue
 		if(job.alt_titles && (LAZYLEN(pref.GetValidTitles(job)) > 1))
 			dispRank = "<span width='60%' align='center'>&nbsp<a href='?src=\ref[src];select_alt_title=\ref[job]'>\[[pref.GetPlayerAltTitle(job)]\]</a></span>"
@@ -216,20 +216,20 @@
 
 		if(rank == "Assistant")//Assistant is special
 			if(pref.job_civilian_low & ASSISTANT)
-				dat += " <span class='high'>\[Yes]</span>"
+				dat += " <span class='high'>\[Да]</span>"
 			else
-				dat += " <span class='none'>\[No]</span>"
+				dat += " <span class='none'>\[Нет]</span>"
 			dat += "</a></td></tr>"
 			continue
 
 		if(pref.GetJobDepartment(job, 1) & job.flag)
-			dat += " <span class='high'>\[High]</span>"
+			dat += " <span class='high'>\[Высокий приоритет]</span>"
 		else if(pref.GetJobDepartment(job, 2) & job.flag)
-			dat += " <span class='med'>\[Medium]</span>"
+			dat += " <span class='med'>\[Средний приоритет]</span>"
 		else if(pref.GetJobDepartment(job, 3) & job.flag)
-			dat += " <span class='low'>\[Low]</span>"
+			dat += " <span class='low'>\[Низкий приоритет]</span>"
 		else
-			dat += " <span class='none'>\[NEVER]</span>"
+			dat += " <span class='none'>\[НИКОГДА]</span>"
 		dat += "</a></td></tr>"
 
 	dat += "</td'></tr></table>"
@@ -238,11 +238,11 @@
 
 	switch(pref.alternate_option)
 		if(BE_ASSISTANT)
-			dat += "<center><br><u><a href='?src=\ref[src];job_alternative=1'>Be assistant if preference unavailable</a></u></center><br>"
+			dat += "<center><br><u><a href='?src=\ref[src];job_alternative=1'>Стать ассистентом, если желаемая роль недоступна</a></u></center><br>"
 		if(RETURN_TO_LOBBY)
-			dat += "<center><br><u><a href='?src=\ref[src];job_alternative=1'><span class='high'>Return to lobby if preference unavailable</span></a></u></center><br>"
+			dat += "<center><br><u><a href='?src=\ref[src];job_alternative=1'><span class='high'>Вернуться в лобби, если желаемая роль недоступна</span></a></u></center><br>"
 
-	dat += "<center><a href='?src=\ref[src];reset_jobs=1'>\[Reset\]</a></center>"
+	dat += "<center><a href='?src=\ref[src];reset_jobs=1'>\[Сбросить\]</a></center>"
 	dat += "</tt>"
 
 	. = dat.Join()
@@ -266,7 +266,7 @@
 		var/list/choices = pref.GetValidTitles(job)
 		if(!LAZYLEN(choices))
 			return ..()// should never happen
-		var/choice = input("Choose a title for [job.title].", "Choose Title", pref.GetPlayerAltTitle(job)) as anything in choices|null
+		var/choice = input("Выберите подпрофессию [job.title].", "Выбор подпрофессии", pref.GetPlayerAltTitle(job)) as anything in choices|null
 		if(choice && CanUseTopic(user))
 			SetPlayerAltTitle(job, choice)
 			return TOPIC_REFRESH_UPDATE_PREVIEW
@@ -289,8 +289,8 @@
 /datum/category_item/player_setup_item/occupation/proc/sanitize_faction()
 	if (!SSjobs.name_factions[pref.faction])
 		pref.faction = SSjobs.default_faction.name
-		to_client_chat(SPAN_DANGER("Your faction selection has been reset to [pref.faction]."))
-		to_client_chat(SPAN_DANGER("Your jobs have been reset due to this!"))
+		to_client_chat(SPAN_DANGER("Ваша фракция была изменена на [pref.faction]."))
+		to_client_chat(SPAN_DANGER("Настройки профессий были сброшены из за этого!"))
 		ResetJobs()
 		return TOPIC_REFRESH_UPDATE_PREVIEW
 
@@ -300,18 +300,18 @@
 		for(var/department = 1 to NUM_JOB_DEPTS)
 			if(pref.GetJobDepartment(job, department) & job.flag)
 				if(!(job in faction.get_occupations()))
-					to_client_chat(SPAN_DANGER("Your faction selection does not permit this job, [job.title] as [pref.faction]."))
-					to_client_chat(SPAN_DANGER("Your jobs have been reset due to this!"))
+					to_client_chat(SPAN_DANGER("Сотрудники [pref.faction] не могут занимать должность [job.title]."))
+					to_client_chat(SPAN_DANGER("Настройки профессий были сброшены из за этого!"))
 					ResetJobs()
 					return TOPIC_REFRESH_UPDATE_PREVIEW
 				if(pref.species in job.blacklisted_species)
-					to_client_chat(SPAN_DANGER("Your faction selection does not permit this species-occupation combination, [pref.species] as [job.title]."))
-					to_client_chat(SPAN_DANGER("Your jobs have been reset due to this!"))
+					to_client_chat(SPAN_DANGER("[pref.species] не может занимать должность [job.title]."))
+					to_client_chat(SPAN_DANGER("Настройки профессий были сброшены из за этого!"))
 					ResetJobs()
 					return TOPIC_REFRESH_UPDATE_PREVIEW
 				if(!is_type_in_typecache(S, faction.allowed_species_types) && length(faction.allowed_species_types))
-					to_client_chat(SPAN_DANGER("Your faction selection does not permit this species, [pref.species] as [pref.faction]."))
-					to_client_chat(SPAN_DANGER("Your jobs have been reset due to this!"))
+					to_client_chat(SPAN_DANGER("[pref.species] не может быть сотрудником [pref.faction]."))
+					to_client_chat(SPAN_DANGER("Настройки профессий были сброшены из за этого!"))
 					ResetJobs()
 					return TOPIC_REFRESH_UPDATE_PREVIEW
 
@@ -433,7 +433,7 @@
 
 	var/datum/faction/faction = SSjobs.name_factions[selected_faction]
 	if(!istype(faction))
-		to_client_chat(SPAN_DANGER("Invalid faction chosen. Resetting to [SSjobs.default_faction.name]."))
+		to_client_chat(SPAN_DANGER("Выбрана недопустимая фракция. Новая фракция: [SSjobs.default_faction.name]."))
 		selected_faction = SSjobs.default_faction.name
 		faction = SSjobs.name_factions[selected_faction]
 		return
@@ -445,13 +445,13 @@
 	dat += "<td width = 200 align='center'>"
 	dat += {"<img style="height:132px;" src="[faction.get_logo_name()]">"}
 
-	dat += "<br/><b>Departments:</br></b>"
+	dat += "<br/><b>Отделы:</br></b>"
 	dat += "<small><b>[faction.departments]</b></small>"
 	dat += "</td>"
 	dat += "</tr>"
 	dat += "</table><center><hr/>"
 
-	dat += "You can learn more about this faction on <a href='?src=\ref[user.client];JSlink=wiki;wiki_page=[replacetext(faction.name, " ", "_")]'>the wiki</a>."
+	dat += "Вы можете больше узнать про эту фракцию на <a href='?src=\ref[user.client];JSlink=wiki;wiki_page=[replacetext(faction.name, " ", "_")]'>вики</a>."
 
 	if (selected_faction == pref.faction)
 		dat += "<br>\[Faction selected\]"
@@ -467,14 +467,14 @@
 	var/datum/faction/faction = SSjobs.name_factions[selected_faction]
 
 	if (!faction)
-		to_client_chat("<span class='danger'>Invalid faction chosen. Resetting to default.</span>")
+		to_client_chat("<span class='danger'>Выбрана недопустимая фракция. Установлена фракция по умолчанию.</span>")
 		selected_faction = SSjobs.default_faction.name
 
 	ResetJobs() // How to be horribly lazy.
 
 	pref.faction = selected_faction
 
-	to_client_chat("<span class='notice'>New faction chosen. Job preferences reset.</span>")
+	to_client_chat("<span class='notice'>Фракция изменена. Сброшены предпочтения профессий.</span>")
 
 /datum/preferences/proc/GetPlayerAltTitle(datum/job/job)
 	return player_alt_titles[job.title] || job.title
