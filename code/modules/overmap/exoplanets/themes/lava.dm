@@ -1,5 +1,5 @@
 /datum/exoplanet_theme/volcanic
-	name = "Volcanic"
+	name = "Вулканическая"
 	surface_turfs = list(
 		/turf/simulated/mineral
 	)

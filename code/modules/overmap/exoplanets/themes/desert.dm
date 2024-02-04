@@ -1,5 +1,5 @@
 /datum/exoplanet_theme/desert
-	name = "Desert"
+	name = "Пустынная"
 	surface_turfs = list(
 		/turf/simulated/mineral
 		)
@@ -45,7 +45,7 @@
 	)
 
 /datum/exoplanet_theme/desert/savannah
-	name = "Savannah"
+	name = "Засушливая"
 
 	humidity_levels = list(
 		BIOME_ARID = 0.3,

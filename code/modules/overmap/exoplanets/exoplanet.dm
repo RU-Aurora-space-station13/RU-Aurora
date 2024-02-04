@@ -1,5 +1,5 @@
 /obj/effect/overmap/visitable/sector/exoplanet
-	name = "exoplanet"
+	name = "экзопланета"
 	scanimage = "exoplanet_empty.png"	//Shouldn't be a scarcity of these, but this image would work if there's somehow nothing to give a new planet type
 	generic_object = FALSE
 	var/area/planetary_area
@@ -16,10 +16,10 @@
 // Fluff, specifically for celestial objects.
 	var/massvolume = "0.95~/1.1"							//Should use biesels as measurement as opposed to earths
 	var/surfacegravity = "0.99"								//Should use Gs as measurement
-	var/charted = "No database entry- likely uncharted."	//If it's on star charts or not, and who found it plus when
-	var/geology = "Dormant, unreadable tectonic activity"	//Anything unique about tectonics and its core activity
-	var/weather = "No substantial meteorological readings"	//Anything unique about terrestrial weather conditions
-	var/surfacewater = "NA/None Visible"					//Water visible on the surface
+	var/charted = "Запись в базе данных отсутствует- вероятно неизвестна."	//If it's on star charts or not, and who found it plus when
+	var/geology = "Незначительная или отсутствующая тектоническая активность"	//Anything unique about tectonics and its core activity
+	var/weather = "Метеоролигеская активность не зафиксирована"	//Anything unique about terrestrial weather conditions
+	var/surfacewater = "Отсутствует/Невидима"					//Water visible on the surface
 
 	var/maxx
 	var/maxy
@@ -388,20 +388,20 @@
 
 /obj/effect/overmap/visitable/sector/exoplanet/get_scan_data(mob/user)
 	. = ..()
-	. += "<br><center><large><b>Scan Details</b></large>"
+	. += "<br><center><large><b>Результаты сканирования</b></large>"
 	. += "<br><large><b>[name]</b></large></center>"
-	. += "<br><b>Estimated Mass and Volume: </b><small>[massvolume]BSS(Biesels)</small>"
-	. += "<br><b>Surface Gravity: </b><small>[surfacegravity]Gs</small>"
-	. += "<br><b>Charted: </b><small>[charted]</small>"
-	. += "<br><b>Geological Variables: </b><small>[geology]</small>"
-	. += "<br><b>Surface Water Coverage: </b><small>[surfacewater]</small>"
-	. += "<br><b>Apparent Weather Data: </b><small>[weather]</small>"
+	. += "<br><b>Предполагаемая масса и объём: </b><small>[massvolume]БЗ(Бизелей)</small>"
+	. += "<br><b>Гравитация: </b><small>[surfacegravity]Gs</small>"
+	. += "<br><b>Информация в экстранете: </b><small>[charted]</small>"
+	. += "<br><b>Геологиическая информация: </b><small>[geology]</small>"
+	. += "<br><b>Вода на поверхности: </b><small>[surfacewater]</small>"
+	. += "<br><b>Погода: </b><small>[weather]</small>"
 	. += "<hr>"
-	. += "<br><center><b>Visible Light Viewport Magnified</b>"
+	. += "<br><center><b>Изображение</b>"
 	. += "<br><img src = [scanimage]>"
-	. += "<br><small>High-Fidelity Image Capture of [name]</small>"
+	. += "<br><small>Изображение планеты [name] высокого разрешения</small>"
 	. += "<hr>"
-	. += "<br><b>Native Database Notes</b></center>"
+	. += "<br><b>Запись в базе данных</b></center>"
 	. += "<br><small>[desc]</small>"
 
 	var/list/extra_data = list("<hr>")
@@ -410,18 +410,18 @@
 		for(var/g in atmosphere.gas)
 			if(atmosphere.gas[g] > atmosphere.total_moles * 0.05)
 				gases += gas_data.name[g]
-		extra_data += "<b>Atmosphere composition:</b> [english_list(gases)]"
+		extra_data += "<b>Состав атмосферы:</b> [english_list(gases)]"
 		var/inaccuracy = rand(8,12)/10
-		extra_data += "<b>Atmosphere pressure:</b> [atmosphere.return_pressure()*inaccuracy] kPa, <b>temperature:</b> [atmosphere.temperature*inaccuracy] K"
+		extra_data += "<b>Атмосферное давление:</b> [atmosphere.return_pressure()*inaccuracy] кПа, <b>температура:</b> [atmosphere.temperature*inaccuracy] K"
 
 	if(seeds.len)
-		extra_data += "<br>Unrecognized xenoflora detected."
+		extra_data += "<br>Обнаружена неизвестная ксенофлора."
 
 	if(animals.len)
-		extra_data += "<br>Unrecognized xenofauna detected."
+		extra_data += "<br>Обнаружена неизвестная ксенофауна."
 
 	else
-		extra_data += "<br>No unrecognized biological signatures detected."
+		extra_data += "<br>Биосфера отсутствует."
 
 	if(LAZYLEN(spawned_features))
 		var/ruin_num = 0
@@ -429,7 +429,7 @@
 			if(!(R.ruin_tags & RUIN_NATURAL))
 				ruin_num++
 		if(ruin_num)
-			extra_data += "<hr>[ruin_num] possible artificial structure\s detected."
+			extra_data += "<hr>Предполагаемое количество структур: [ruin_num]."
 
 	. += jointext(extra_data, "<br>")
 

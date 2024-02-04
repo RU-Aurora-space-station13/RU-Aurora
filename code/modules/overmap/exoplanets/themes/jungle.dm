@@ -1,6 +1,6 @@
 /datum/exoplanet_theme/jungle
 	// Welcome to the
-	name = "Jungle"
+	name = "Тропическая"
 	surface_turfs = list(
 		/turf/simulated/mineral
 	)
@@ -36,7 +36,7 @@
 	)
 
 /datum/exoplanet_theme/konyang
-	name = "Konyang"
+	name = "Коньяг"
 	surface_turfs = list(
 		/turf/simulated/mineral
 	)

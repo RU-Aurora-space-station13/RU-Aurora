@@ -1,5 +1,5 @@
 /datum/exoplanet_theme/snow
-	name = "Boreal Forest"
+	name = "Арктическая"
 	surface_turfs = list(
 		/turf/simulated/mineral
 		)
@@ -25,7 +25,7 @@
 	)
 
 /datum/exoplanet_theme/snow/tundra
-	name = "Frozen Tundra"
+	name = "Морозная"
 	heat_levels = list(
 		BIOME_POLAR = 0.7,
 		BIOME_COOL = 1.0
@@ -33,7 +33,7 @@
 	mountain_threshold = 0.6
 
 /datum/exoplanet_theme/snow/adhomai
-	name = "Adhomai"
+	name = "Адомай"
 	mountain_threshold = 0.6
 	mountain_biome = /singleton/biome/mountain/adhomai
 	possible_biomes = list(
@@ -48,7 +48,7 @@
 	)
 
 /datum/exoplanet_theme/snow/tundra/adhomai
-	name = "Adhomai North Pole"
+	name = "Северный Полюс Адомая"
 	mountain_biome = /singleton/biome/mountain/adhomai
 	possible_biomes = list(
 		BIOME_POLAR = list(
