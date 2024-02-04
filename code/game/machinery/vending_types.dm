@@ -152,8 +152,8 @@
 	)
 	vend_delay = 15
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
-	product_slogans = "I hope nobody asks me for a bloody cup o' tea...;Alcohol is humanity's friend. Would you abandon a friend?;Quite delighted to serve you!;Is nobody thirsty on this station?"
-	product_ads = "Drink up!;Booze is good for you!;Alcohol is humanity's best friend.;Quite delighted to serve you!;Care for a nice, cold beer?;Nothing cures you like booze!;Have a sip!;Have a drink!;Have a beer!;Beer is good for you!;Only the finest alcohol!;Best quality booze since 2053!;Award-winning wine!;Maximum alcohol!;Man loves beer.;A toast for progress!"
+	product_slogans = "Человек пиву - волк. А волки уже давно приручены!;Рад вас хмелить!;Никто что, пить не хочет?"
+	product_ads = "Пейте!;Пивка для рывка!;Алкоголь - лучший друг человека!;Рад служить!;Кстати, я должен тебе пиво.;В своём возрасте уже можешь выбрать, чем лечиться!;Вздрогнем!!;Самое время выпить!;Пивка не хочешь?;Пиво лечит все недуги!;У нас только лучший спирт!;Лучший спирт с 2053!;Эталонное вино!;99.9% спирта!;Человек любит пиво.;Выпьем за прогресс!"
 	req_access = list(ACCESS_BAR)
 	random_itemcount = 0
 	vending_sound = 'sound/machines/vending/vending_cans.ogg'

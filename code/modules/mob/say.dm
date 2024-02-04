@@ -6,7 +6,7 @@
 	set category = "IC"
 
 	if(say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, SPAN_WARNING("Speech is currently admin-disabled."))
+		to_chat(usr, SPAN_WARNING("Говорить сейчас нельзя."))
 		return
 
 	message = sanitize(message)
@@ -21,7 +21,7 @@
 	set category = "IC"
 
 	if(say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, "<span class='warning'>Speech is currently admin-disabled.</span>")
+		to_chat(usr, "<span class='warning'>Говорить сейчас нельзя.</span>")
 		return
 
 	message = sanitize(message)
@@ -36,21 +36,21 @@
 
 /mob/proc/say_dead(var/message)
 	if(say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, "<span class='danger'>Speech is currently admin-disabled.</span>")
+		to_chat(usr, "<span class='danger'>Говорить сейчас нельзя.</span>")
 		return
 
 	if(!src.client.holder)
 		if(!GLOB.config.dsay_allowed)
-			to_chat(src, "<span class='danger'>Deadchat is globally muted.</span>")
+			to_chat(src, "<span class='danger'>Мёртвым слова не давали.</span>")
 			return
 
 	if(client && !(client.prefs.toggles & CHAT_DEAD))
-		to_chat(usr, "<span class='danger'>You have deadchat muted.</span>")
+		to_chat(usr, "<span class='danger'>Вам запрещено сюда говорить.</span>")
 		return
 
 	message = process_chat_markup(message, list("~", "_"))
 
-	say_dead_direct("[pick("complains","moans","whines","laments","blubbers")], <span class='message linkify'>\"[message]\"</span>", src)
+	say_dead_direct("[pick("жалуется","ноет","хнычет","ворчит","балаболит")], <span class='message linkify'>\"[message]\"</span>", src)
 
 /mob/proc/say_understands(var/mob/other,var/datum/language/speaking = null)
 
@@ -93,20 +93,20 @@
 */
 
 /mob/proc/say_quote(var/message, var/datum/language/speaking = null, var/singing = FALSE, var/whisper = FALSE)
-	. = "says"
+	. = "говорит"
 	if(singing)
-		return "sings"
+		return "поёт"
 	if(whisper)
-		return "whispers"
+		return "шепчет"
 	var/ending = copytext(message, length(message))
 	var/pre_ending = copytext(message, length(message) - 1, length(message))
 	if(ending == "!")
 		if(pre_ending == "!" || pre_ending == "?")
-			. = pick("shouts", "yells")
+			. = pick("кричит", "орёт")
 		else
-			. = "exclaims"
+			. = "восклицает"
 	else if(ending == "?")
-		. ="asks"
+		. = pick("спрашивает", "озадачивается")
 
 
 /mob/proc/whisper(var/message, var/datum/language/speaking, var/is_singing = FALSE)
