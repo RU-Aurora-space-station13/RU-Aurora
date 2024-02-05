@@ -655,7 +655,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["limbs"])
-		var/list/acceptable_organ_input = list("Левая нога","Правая нога","Левая рука","Левая рука","Левая стопа","Правая стопа","Левая кисть","Правая кисть")
+		var/list/acceptable_organ_input = list("Левая нога","Правая нога","Левая рука","Правая рука","Левая стопа","Правая стопа","Левая кисть","Правая кисть")
 		var/limb_name = tgui_input_list(user, "Какую конечность вы хотите поменять?", "Конечности", acceptable_organ_input)
 		if(!limb_name && !CanUseTopic(user)) return TOPIC_NOACTION
 

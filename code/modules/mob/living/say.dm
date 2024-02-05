@@ -125,11 +125,11 @@ var/list/channel_to_radio_key = new
 		. = TRUE
 	else if(slurring)
 		message = slur(message, slurring)
-		say_verb = pick("slobbers", "slurs")
+		say_verb = pick("выдавливает", "мякает")
 		. = TRUE
 	else if(HAS_TRAIT(src, TRAIT_SPEAKING_GIBBERISH))
 		message = Gibberish(message, 40)
-		say_verb = pick("blurbles", "blorps")
+		say_verb = pick("шелупонит", "выдаёт")
 		. = TRUE
 
 	if(.)
