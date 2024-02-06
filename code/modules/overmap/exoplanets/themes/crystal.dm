@@ -1,5 +1,5 @@
 /datum/exoplanet_theme/crystal
-	name = "Crystalline"
+	name = "Кристаллическая"
 	surface_turfs = list(
 		/turf/simulated/mineral
 	)

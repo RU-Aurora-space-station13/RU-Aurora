@@ -64,26 +64,26 @@
 
 /datum/category_item/player_setup_item/other/incidents/content(mob/user)
 	var/list/dat = list(
-		"<b>Incident Information</b><br>",
-		"The following incidents are on file for your character<br>"
+		"<b>Информация об инцидентах</b><br>",
+		"Следующие инциденты были записаны на вашего персонажа<br>"
 	)
 	for (var/In in pref.incidents)
 		var/datum/record/char_infraction/I = In
 		dat += "<hr>"
 		dat += "UID: [I.id]<br>"
-		dat += "Date/Time: [I.datetime]<br>"
-		dat += "Charges: "
+		dat += "Дата/Время: [I.datetime]<br>"
+		dat += "Обвинение: "
 		for (var/L in I.charges)
 			dat += "[L], "
 		if (I.fine == 0)
-			dat += "<br>Brig Sentence: [I.getBrigSentence()] <br>"
+			dat += "<br>Продолжительность заключения: [I.getBrigSentence()] <br>"
 		else
-			dat += "Fine: [I.fine] Credits<br>"
-		dat += "Notes: <br>"
+			dat += "Штраф: [I.fine] Кредитов<br>"
+		dat += "Пометки: <br>"
 		if (I.notes != "")
 			dat += nl2br(I.notes)
 		else
-			dat += "- No Summary Entered -"
+			dat += "- Отсутствуют -"
 		dat += "<br><a href='?src=\ref[src];details_sec_incident=[I.db_id]'>Show Details</a><br><a href='?src=\ref[src];del_sec_incident=[I.db_id]'>Delete Incident</a>"
 
 	. = dat.Join()
@@ -91,9 +91,9 @@
 /datum/category_item/player_setup_item/other/incidents/OnTopic(var/href,var/list/href_list, var/mob/user)
 	if(href_list["del_sec_incident"])
 		var/search_incident = text2num(href_list["del_sec_incident"])
-		var/confirm = alert(user,"Do you want to delete that incident ?","Delete Incident","Yes","No")
+		var/confirm = alert(user,"Хотите забыть этот инцидент?","Delete Incident","Да","Нет")
 
-		if(!search_incident || !CanUseTopic(user) || confirm == "No")
+		if(!search_incident || !CanUseTopic(user) || confirm == "Нет")
 			return TOPIC_NOACTION
 
 		for(var/In in pref.incidents)

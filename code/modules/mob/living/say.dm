@@ -52,18 +52,18 @@ var/list/department_radio_keys = list(
 
 		//kinda localization -- rastaf0
 		//same keys as above, but on russian keyboard layout. This file uses cp1251 as encoding.
-		":ê" = "right ear",	".ê" = "right ear",
-		":ä" = "left ear",	".ä" = "left ear",
-		":ø" = "intercom",	".ø" = "intercom",
-		":ð" = "department",	".ð" = "department",
-		":ñ" = "Command",		".ñ" = "Command",
-		":ò" = "Science",		".ò" = "Science",
-		":ü" = "Medical",		".ü" = "Medical",
-		":ó" = "Engineering",	".ó" = "Engineering",
-		":û" = "Security",	".û" = "Security",
-		":ö" = "whisper",		".ö" = "whisper",
-		":å" = "Mercenary",	".å" = "Mercenary",
-		":é" = "Operations",	".é" = "Operations"
+		":к" = "right ear",	".К" = "right ear",
+		":д" = "left ear",	".Д" = "left ear",
+		":ш" = "intercom",	".Ш" = "intercom",
+		":р" = "department",	".Р" = "department",
+		":с" = "Command",		".С" = "Command",
+		":т" = "Science",		".Т" = "Science",
+		":ь" = "Medical",		".Ь" = "Medical",
+		":у" = "Engineering",	".У" = "Engineering",
+		":ы" = "Security",	".Ы" = "Security",
+		":ц" = "whisper",		".Ц" = "whisper",
+		":е" = "Mercenary",	".Е" = "Mercenary",
+		":г" = "Operations",	".Г" = "Operations"
 )
 
 
@@ -105,17 +105,17 @@ var/list/channel_to_radio_key = new
 		if(ending && GLOB.correct_punctuation[ending])
 			message = copytext(message, 1, length(message))
 		message = "[uppertext(message)]!!!"
-		say_verb = pick("yells", "roars", "hollers")
+		say_verb = pick("кричит", "рычит", "воет")
 		. = TRUE
 	else if(brokejaw)
 		message = slur(message, 100)
-		say_verb = pick("slobbers", "slurs")
+		say_verb = pick("мямлит", "проговаривает")
 		switch(rand(1, 100))
 			if(1 to 10)
-				to_chat(src, SPAN_DANGER("You feel a sharp pain from your jaw as you speak!"))
+				to_chat(src, SPAN_DANGER("Ваша челюсть отдаёт болью, когда вы пытаетесь говорить!"))
 				Weaken(3)
 			if(11 to 60)
-				to_chat(src, SPAN_WARNING("You struggle to speak with your dislocated jaw!"))
+				to_chat(src, SPAN_WARNING("Не так уж и легко говорить с вывихнутой челюстью!"))
 			else
 				. = null //This does nothing, it's to avoid a dreamchecker error
 		. = TRUE
@@ -125,11 +125,11 @@ var/list/channel_to_radio_key = new
 		. = TRUE
 	else if(slurring)
 		message = slur(message, slurring)
-		say_verb = pick("slobbers", "slurs")
+		say_verb = pick("выдавливает", "мякает")
 		. = TRUE
 	else if(HAS_TRAIT(src, TRAIT_SPEAKING_GIBBERISH))
 		message = Gibberish(message, 40)
-		say_verb = pick("blurbles", "blorps")
+		say_verb = pick("шелупонит", "выдаёт")
 		. = TRUE
 
 	if(.)
@@ -141,7 +141,7 @@ var/list/channel_to_radio_key = new
 		)
 
 /mob/living/proc/get_stutter_verbs()
-	return list("stammers", "stutters")
+	return list("заплетается", "заикается")
 
 /mob/living/proc/handle_message_mode(message_mode, message, verb, speaking, used_radios, alt_name, whisper)
 	if(message_mode == "intercom")
@@ -164,9 +164,9 @@ var/list/channel_to_radio_key = new
 
 /mob/living/proc/get_speech_ending(verb, var/ending)
 	if(ending=="!")
-		return pick("exclaims","shouts","yells")
+		return pick("восклицает","кричит","орёт")
 	if(ending=="?")
-		return "asks"
+		return "спрашивает"
 	return verb
 
 /mob/living/proc/get_font_size_modifier()
@@ -238,7 +238,7 @@ var/list/channel_to_radio_key = new
 	// irrespective of distance or anything else.
 	if(speaking && (speaking.flags & HIVEMIND))
 		if(speaking.name == LANGUAGE_VAURCA && within_jamming_range(src))
-			to_chat(src, SPAN_WARNING("Your head buzzes as your message is blocked with jamming signals."))
+			to_chat(src, SPAN_WARNING("Ваша голова гудит, как будто бы вашу речь заглушает какой то сигнал."))
 			return
 		speaking.broadcast(src,trim(message))
 		return TRUE
@@ -247,7 +247,7 @@ var/list/channel_to_radio_key = new
 		verb = say_quote(message, speaking, is_singing, whisper)
 
 	if(is_muzzled())
-		to_chat(src, "<span class='danger'>You're muzzled and cannot speak!</span>")
+		to_chat(src, "<span class='danger'>У вас во рту кляп!</span>")
 		return
 
 	message = trim_left(message)
@@ -294,7 +294,7 @@ var/list/channel_to_radio_key = new
 		if(speaking)
 			message_range = speaking.get_talkinto_msg_range(message)
 		if(!speaking || !(speaking.flags & NO_TALK_MSG))
-			var/msg = SPAN_NOTICE("\The [src] talks into \the [used_radios[1]].")
+			var/msg = SPAN_NOTICE("[src] говорит в [used_radios[1]].")
 			for (var/mob/living/L in get_hearers_in_view(5, src) - src)
 				L.show_message(msg)
 		if(speech_sound)
@@ -387,7 +387,7 @@ var/list/channel_to_radio_key = new
 	for(var/client/C in show_to)
 		C.images -= I
 
-/mob/living/proc/say_signlang(var/message, var/verb="gestures", var/datum/language/language, var/list/sign_adv_length)
+/mob/living/proc/say_signlang(var/message, var/verb="жестикулирует", var/datum/language/language, var/list/sign_adv_length)
 	log_say("[key_name(src)] : ([get_lang_name(language)]) [message]",ckey=key_name(src))
 
 	for (var/mob/O in viewers(src, null))

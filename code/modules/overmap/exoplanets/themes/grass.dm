@@ -1,5 +1,5 @@
 /datum/exoplanet_theme/grass
-	name = "Grasslands" // Not gm_flatgrass, but pretty close
+	name = "Травянистая" // Not gm_flatgrass, but pretty close
 	surface_turfs = list(
 		/turf/simulated/floor/exoplanet/grass,
 		/turf/simulated/mineral
@@ -40,7 +40,7 @@
 	surface_color = E.grass_color
 
 /datum/exoplanet_theme/grass/marsh
-	name = "Fungal Marsh"
+	name = "Болотная"
 	surface_turfs = list(
 		/turf/simulated/mineral
 	)

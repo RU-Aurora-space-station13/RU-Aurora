@@ -152,8 +152,8 @@
 	)
 	vend_delay = 15
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
-	product_slogans = "I hope nobody asks me for a bloody cup o' tea...;Alcohol is humanity's friend. Would you abandon a friend?;Quite delighted to serve you!;Is nobody thirsty on this station?"
-	product_ads = "Drink up!;Booze is good for you!;Alcohol is humanity's best friend.;Quite delighted to serve you!;Care for a nice, cold beer?;Nothing cures you like booze!;Have a sip!;Have a drink!;Have a beer!;Beer is good for you!;Only the finest alcohol!;Best quality booze since 2053!;Award-winning wine!;Maximum alcohol!;Man loves beer.;A toast for progress!"
+	product_slogans = "Человек пиву - волк. А волки уже давно приручены!;Рад вас хмелить!;Никто что, пить не хочет?"
+	product_ads = "Пейте!;Пивка для рывка!;Алкоголь - лучший друг человека!;Рад служить!;Кстати, я должен тебе пиво.;В своём возрасте уже можешь выбрать, чем лечиться!;Вздрогнем!!;Самое время выпить!;Пивка не хочешь?;Пиво лечит все недуги!;У нас только лучший спирт!;Лучший спирт с 2053!;Эталонное вино!;99.9% спирта!;Человек любит пиво.;Выпьем за прогресс!"
 	req_access = list(ACCESS_BAR)
 	random_itemcount = 0
 	vending_sound = 'sound/machines/vending/vending_cans.ogg'
@@ -231,7 +231,7 @@
 	premium = list(
 		/obj/item/device/multitool/ = 2
 	)
-	product_ads = "Only the finest!;Have some tools.;The most robust equipment.;The finest gear in space!"
+	product_ads = "Лучшее для лучших!;Лови отвёртку.;Подходит для боя!;Лучшие инструменты в космосе!"
 	restock_items = 1
 	light_color = COLOR_GUNMETAL
 
@@ -256,7 +256,7 @@
 /obj/machinery/vending/coffee
 	name = "Hot Drinks machine"
 	desc = "A vending machine which dispenses hot drinks."
-	product_ads = "Have a drink!;Drink up!;It's good for you!;Would you like a hot joe?;I'd kill for some coffee!;The best beans in the galaxy.;Only the finest brew for you.;Mmmm. Nothing like a coffee.;I like coffee, don't you?;Coffee helps you work!;Try some tea.;We hope you like the best!;Try our new chocolate!;Admin conspiracies"
+	product_ads = "Держи кофейку!;Пей!;Полезно для здоровья!;Как насчёт чашечки кофе?;За кофе и двор стреляю в упор!;Лучшие зёрна в галактике.;Лучшее для вас.;Мммммм, чифирчик...;Я люблю кофе, а ты?;Будешь лучше работать!;Попробуйте чаю.;Надеюсь, вам понравится!;Греет душу!"
 	icon_state = "coffee"
 	icon_vend = "coffee-vend"
 	vend_delay = 34
@@ -308,8 +308,8 @@
 /obj/machinery/vending/snack
 	name = "Getmore Chocolate Corp"
 	desc = "A snack machine courtesy of the Getmore Chocolate Corporation, based out of Mars."
-	product_slogans = "Try our new nougat bar!;Twice the calories for half the price!"
-	product_ads = "The healthiest!;Award-winning chocolate bars!;Mmm! So good!;Oh my god it's so juicy!;Have a snack.;Snacks are good for you!;Have some more Getmore!;Best quality snacks straight from mars.;We love chocolate!;Try our new jerky!"
+	product_slogans = "Попробуйте нугу!;В два раза больше калорий в два раза дешевле!"
+	product_ads = "Ты не ты, когда голоден!;Самый горький шоколад в мире!;Ммм! Пальчики оближешь!;Как же сочно!;Перекуси.;От одного снека не сдохнешь!;Лучшие марсианские снеки.;Люблю шоколад!;Попробуй говядину!"
 	icon_state = "snack"
 	icon_vend = "snack-vend"
 	vend_id = "snacks"
@@ -419,8 +419,8 @@
 	desc = "A soft drink vendor provided by an Idris subsidiary."
 	icon_state = "cola_machine"
 	icon_vend = "cola_machine-vend"
-	product_slogans = "Idris Re-Fresh: the more expensive the place, the more of us you'll seee!"
-	product_ads = "Refreshing!;Hope you're thirsty!;Thirsty? Why not cola?;Please, have a drink!;Drink up!;The best drinks in space."
+	product_slogans = "Idris Re-Fresh: чем богаче место, тем больше нас в нём!"
+	product_ads = "Освежает и бодрит!;Ты захочешь пить!;Хочешь пить? Может, кола?;Пожалуйста, выпей!;Пей!;Лучшие напитки в космосе."
 	vend_id = "cola"
 	products = list(
 		/obj/item/reagent_containers/food/drinks/cans/cola = 10,
@@ -499,8 +499,8 @@
 /obj/machinery/vending/cigarette
 	name = "cigarette machine" //OCD had to be uppercase to look nice with the new formating
 	desc = "If you want to get cancer, might as well do it in style!"
-	product_slogans = "Space cigs taste good like a cigarette should.;I'd rather toolbox than switch.;Smoke!;Don't believe the reports - smoke today!"
-	product_ads = "Probably not bad for you!;Don't believe the scientists!;It's good for you!;Don't quit, buy more!;Smoke!;Nicotine heaven.;Best cigarettes since 2150.;Award-winning cigs."
+	product_slogans = "Космические сигареты ничуть не хуже земных!;Лучше ящиком по башке чем бросать курить.;Кури!;Не верь врачам - кури!"
+	product_ads = "Не такие уж мы и вредные!;Не верь очкарикам!;Полезны для здоровья!;Зачем бросать, лучше больше покупай!;Кури!;Рай никотиновый.;Лучшие сиги с 2150.;Закурить найдётся!"
 	vend_delay = 24
 	icon_state = "cigs"
 	icon_vend = "cigs-vend"
@@ -621,7 +621,7 @@
 	icon_state = "med"
 	icon_vend = "med-vend"
 	deny_time = 15
-	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
+	product_ads = "Спасаем жизни!;Весь медбей в одном автомате.;Только лучшее.;Натуральная химия!;Эта хрень спасает жизни.;Не хочешь взять что нибудь?;Ква!"
 	req_access = list(ACCESS_MEDICAL_EQUIP)
 	vend_id = "meds"
 	products = list(
@@ -693,7 +693,7 @@
 /obj/machinery/vending/wallmed1
 	name = "\improper NanoMed"
 	desc = "A wall-mounted version of the NanoMed."
-	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?"
+	product_ads = "Спасаем жизни!;Весь медбей в одном автомате.;Только лучшее.;Натуральная химия!;Эта хрень спасает жизни.;Не хочешь взять что нибудь?"
 	icon_state = "wallmed"
 	deny_time = 15
 	req_access = list(ACCESS_MEDICAL)
@@ -758,7 +758,7 @@
 /obj/machinery/vending/security
 	name = "SecTech"
 	desc = "A security equipment vendor."
-	product_ads = "Crack capitalist skulls!;Beat some heads in!;Don't forget - harm is good!;Your weapons are right here.;Handcuffs!;Freeze, scumbag!;Don't tase me bro!;Tase them, bro.;Why not have a donut?"
+	product_ads = "Сломай им череп!;Бей в голову!;Не забудь про норму избиений!;Всё оружие в одном месте.;Наручники!;На пол, сука!;Пригнись, брат!;Стреляй, брат.;Хочешь пончик?"
 	icon_state = "sec"
 	icon_vend = "sec-vend"
 	deny_time = 16
@@ -798,8 +798,8 @@
 /obj/machinery/vending/hydronutrients
 	name = "NutriMax"
 	desc = "A plant nutrients vendor."
-	product_slogans = "Aren't you glad you don't have to fertilize the natural way?;Now with 50% less stink!;Plants are people too!"
-	product_ads = "We like plants!;Don't you want some?;The greenest thumbs ever.;We like big plants.;Soft soil..."
+	product_slogans = "Рад, что срать в огород не надо?;На 50% меньше вони!;Растения тоже люди!"
+	product_ads = "Люблю растения!;Навоз не хочешь?;Зелёный палец.;Люблю растения.;Мягкая почва..."
 	icon_state = "nutri"
 	icon_vend = "nutri-vend"
 	deny_time = 6
@@ -837,8 +837,8 @@
 /obj/machinery/vending/hydroseeds
 	name = "MegaSeed Servitor"
 	desc = "When you need seeds fast!"
-	product_slogans = "THIS'S WHERE TH' SEEDS LIVE! GIT YOU SOME!;Hands down the best seed selection on the station!;Also certain mushroom varieties available, more for experts! Get certified today!"
-	product_ads = "We like plants!;Grow some crops!;Grow, baby, growww!;Aw h'yeah son!"
+	product_slogans = "Лучшая выборка семян на судне!;Грибы также в наличии!"
+	product_ads = "Люблю растения!;Расти большой, не будь лапшой!;Расти, детка!;Хиииии-яяяяяя!"
 	icon_state = SEED_NOUN_SEEDS
 	vend_id = SEED_NOUN_SEEDS
 	products = list(
@@ -1023,7 +1023,7 @@
 /obj/machinery/vending/dinnerware
 	name = "Dinnerware"
 	desc = "A kitchen and restaurant equipment vendor."
-	product_ads = "Mm, food stuffs!;Food and food accessories.;Get your plates!;You like forks?;I like forks.;Woo, utensils.;You don't really need these..."
+	product_ads = "Мм, кушанья!;Еду и аксессуары.;Возьми тарелку!;Ты любишь вилки?;Люблю вилки.;Ура-а-а-а-а, посуда...;Я не очень полезный..."
 	icon_state = "dinnerware"
 	icon_vend = "dinnerware-vend"
 	vend_id = "cutlery"
@@ -1123,7 +1123,7 @@
 	icon_state = "sovietsoda"
 	icon_vend = "sovietsoda-vend"
 	vend_id = "cola"
-	product_ads = "For Tsar and Country.;Have you fulfilled your nutrition quota today?;Very nice!;We are simple people, for this is all we eat.;If there is a person, there is a problem. If there is no person, then there is no problem."
+	product_ads = "За царя и за страну.;Выполнил норму потребления?;Как мило!;Для народа.;Есть человек - есть проблема. Нет человека - нет проблемы."
 	products = list(
 		/obj/item/reagent_containers/food/drinks/drinkingglass/soda = 30
 	)
@@ -1354,8 +1354,8 @@
 	desc = "An energy drink vendor provided by the Getmore Corporation in partnership with the brood of Ta'Akaix'Xakt'yagz'isk Zo'ra."
 	icon_state = "zoda"
 	icon_vend = "zoda-vend"
-	product_slogans = "Safe for consumption by all species!;Made by hard-working bound drones!;The most refreshing energy drink around!;A product of two thousand years!"
-	product_ads = "Tired? Try some Zo'ra Soda!;Thirsty? Why not Zo'ra Soda?;Bored? Have some Zo'ra Soda!;Zo'ra Soda. Drink up!;ZZZOOO'RRRAAA SSSOOODDDAAA!"
+	product_slogans = "Полностью безопасная!;Продукт любви тысячи дронов!;Самый лучший энергетик!;Этой воде две тыщи лет!"
+	product_ads = "Устал? Зо'ра сода для тебя!;Хочешь пить? Пей Зо'ра соду!;Скучаешь? Зо'ра сода всегда с тобой!;Zo'ra Soda. Drink up!;ЗЗЗООО'РРРААА СССОООДДДААА!"
 	vend_id = "zora"
 	products = list(
 		/obj/item/reagent_containers/food/drinks/cans/zorasoda/cherry = 5,
@@ -1426,8 +1426,8 @@
 	name = "grand romanovich vending machine"
 	desc = "A vending machine commonly found in Crevus' casinos."
 	icon_state = "casinovend"
-	product_slogans = "The House always wins!;Spends your chips right here!;Let Go and Begin Again..."
-	product_ads = "Finding it, though, that's not the hard part. It's letting go."
+	product_slogans = "Казино всегда в выигрыше!;Деньги деньги дребеденьги!;Казино, казино, казино..."
+	product_ads = "Начать не сложно, сложно кончить."
 	vend_id = "casino"
 	products = list(
 		/obj/item/coin/casino = 50
@@ -1487,8 +1487,8 @@
 	desc = "A vending machine filled with MRE's."
 	icon_state = "mrevend"
 	icon_vend = "mrevend-vend"
-	product_slogans = ";FOREIGN LEGION TESTED!, FOREIGN LEGION RECOMMENDED!, FOREIGN LEGION APPROVED!;YOU ARE NOT ALLOWED A JELLY DOUGHNUT!;YOU DON'T WANT TO DIE HUNGRY, SOLDIER!"
-	product_ads = "Everything the body needs!;Now trans-fat free!;Vegan options are available.;Safe for all known species!"
+	product_slogans = ";ЛЕГИОН ЗАТЕСТИЛ!, ЛЕГИОН ПОСОВЕТОВАЛ!, ЛЕГИОН ОДОБРИЛ!;НИКАКИХ, БЛЯДЬ, ТЕБЕ ЖЕЛЕЙНЫХ ПООООООНЧИКОВ!;ТЫ НЕ УМРЁШЬ ГОЛОДНЫМ, СОЛДАТ!"
+	product_ads = "Всё, что нужно тело!;Трансжиры отсутствуют!;Есть веганские меню.;Скорее всего безопасно для всех известных видов!"
 	products = list(
 		/obj/item/storage/box/fancy/mre = 2,
 		/obj/item/storage/box/fancy/mre/menu2 = 2,
@@ -1526,7 +1526,7 @@
 	desc_extended = "Previously the realm of amateur programmers and niche companies, the Gwok Group acquired and amalgamated a number of popular Port Verdant overloader brands in order to capitalize on the growing industry. Seeing untapped markets abroad, the corporation has begun exporting to nations with free IPC populations."
 	icon_state = "synth"
 	icon_vend = "synth-vend"
-	product_slogans = "GwokBuzz, to take the edge off!;Try our new Rainbow Essence flavour!;Safe and sanctioned by the authorities!"
+	product_slogans = "GwokBuzz!;Попробуй вкус радуги!;Власти одобряют!"
 	vend_id = "overloaders"
 	products = list(
 		/obj/item/storage/overloader/classic = 5,

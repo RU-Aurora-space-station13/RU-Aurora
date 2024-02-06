@@ -10,11 +10,11 @@
 	var/ending = copytext(text, length(text))
 
 	if(ending == "?")
-		return "asks";
+		return "спрашивает";
 	else if(ending == "!")
-		return "cries";
+		return "плачет";
 
-	return "chirps";
+	return "щебечет";
 
 /mob/living/carbon/slime/say_understands(var/other)
 	if(istype(other, /mob/living/carbon/slime))

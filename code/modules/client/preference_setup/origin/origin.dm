@@ -78,35 +78,35 @@
 	else
 		var/singleton/origin_item/origin/origin_check = text2path(pref.origin)
 		if(!(origin_check in our_culture.possible_origins))
-			to_client_chat(SPAN_WARNING("Your origin has been reset due to it being incompatible with your culture!"))
+			to_client_chat(SPAN_WARNING("Ваше происхождение было сброшено из за несовместимости с вашей культурой!"))
 			var/singleton/origin_item/origin/OI = pick(our_culture.possible_origins)
 			pref.origin = "[OI]"
 	var/singleton/origin_item/origin/our_origin = GET_SINGLETON(text2path(pref.origin))
 	if(!(pref.citizenship in our_origin.possible_citizenships))
-		to_client_chat(SPAN_WARNING("Your previous citizenship is invalid for this origin! Resetting."))
+		to_client_chat(SPAN_WARNING("Ваше прошлое гражданство не подходит для этого происхождения! Сбрасываем."))
 		pref.citizenship = our_origin.possible_citizenships[1]
 	if(!(pref.religion in our_origin.possible_religions))
-		to_client_chat(SPAN_WARNING("Your previous religion is invalid for this origin! Resetting."))
+		to_client_chat(SPAN_WARNING("Ваша прошлая религия не подходит для этого происхождения! Сбрасываем."))
 		pref.religion = our_origin.possible_religions[1]
 	if(!(pref.accent in our_origin.possible_accents))
-		to_client_chat(SPAN_WARNING("Your previous accent is invalid for this origin! Resetting."))
+		to_client_chat(SPAN_WARNING("Ваш прошлый акцент не подходит для этого происхождения! Сбрасываем."))
 		pref.accent	= our_origin.possible_accents[1]
 	pref.economic_status = sanitize_inlist(pref.economic_status, ECONOMIC_POSITIONS, initial(pref.economic_status))
 
 /datum/category_item/player_setup_item/origin/content(var/mob/user)
 	if(!SSrecords.initialized)
-		return "<center><large>Records controller not initialized yet. Please wait a bit and reload this section.</large></center>"
+		return "<center><large>Игра ещё не прогрузилась. Пожалуйста, подождите немного и перезагрузите это окно.</large></center>"
 	var/list/dat = list()
 	var/singleton/origin_item/culture/CL = GET_SINGLETON(text2path(pref.culture))
 	var/singleton/origin_item/origin/OR = GET_SINGLETON(text2path(pref.origin))
-	dat += "<b>Culture: </b><a href='?src=\ref[src];open_culture_menu=1'>[CL.name]</a><br>"
+	dat += "<b>Культура: </b><a href='?src=\ref[src];open_culture_menu=1'>[CL.name]</a><br>"
 	dat += "<i>- [CL.desc]</i><br><br>"
 	if(length(CL.origin_traits_descriptions))
 		dat += "- Characters from this culture "
 		dat += "<b>[english_list(CL.origin_traits_descriptions)]</b>."
 	if(CL.important_information)
 		dat += "<br><i>- <font color=red>[CL.important_information]</font></i>"
-	dat += "<hr><b>Origin: </b><a href='?src=\ref[src];open_origin_menu=1'>[OR.name]</a><br>"
+	dat += "<hr><b>Происхождение: </b><a href='?src=\ref[src];open_origin_menu=1'>[OR.name]</a><br>"
 	dat += "<i>- [OR.desc]</i><br>"
 	if(length(OR.origin_traits_descriptions))
 		dat += "- Characters from this origin "
@@ -114,10 +114,10 @@
 	if(OR.important_information)
 		dat += "<br><i>- <font color=red>[OR.important_information]</font></i>"
 	dat += "<hr>"
-	dat += "<b>Economic Status:</b> <a href='?src=\ref[src];economic_status=1'>[pref.economic_status]</a><br/>"
-	dat += "<b>Citizenship:</b> <a href='?src=\ref[src];citizenship=1'>[pref.citizenship]</a><br/>"
-	dat += "<b>Religion:</b> <a href='?src=\ref[src];religion=1'>[pref.religion]</a><br/>"
-	dat += "<b>Accent:</b> <a href='?src=\ref[src];accent=1'>[pref.accent]</a><br/>"
+	dat += "<b>Богатство:</b> <a href='?src=\ref[src];economic_status=1'>[pref.economic_status]</a><br/>"
+	dat += "<b>Гражданство:</b> <a href='?src=\ref[src];citizenship=1'>[pref.citizenship]</a><br/>"
+	dat += "<b>Религия:</b> <a href='?src=\ref[src];religion=1'>[pref.religion]</a><br/>"
+	dat += "<b>Акцент:</b> <a href='?src=\ref[src];accent=1'>[pref.accent]</a><br/>"
 	. = dat.Join()
 
 /datum/category_item/player_setup_item/origin/OnTopic(href, href_list, user)
@@ -128,7 +128,7 @@
 		for(var/decl_type in possible_cultures)
 			var/singleton/origin_item/culture/CL = possible_cultures[decl_type]
 			options[CL.name] = CL
-		var/result = tgui_input_list(user, "Choose your character's culture.", "Culture", options)
+		var/result = tgui_input_list(user, "Выберите культуру вашего персонажа.", "Культура", options)
 		var/singleton/origin_item/culture/chosen_culture = options[result]
 		if(chosen_culture)
 			show_window(chosen_culture, "set_culture_data", user)
@@ -141,7 +141,7 @@
 		for(var/decl_type in origins_list)
 			var/singleton/origin_item/origin/OR = origins_list[decl_type]
 			options[OR.name] = OR
-		var/result = tgui_input_list(user, "Choose your character's origin.", "Origins", options)
+		var/result = tgui_input_list(user, "Выберите происхождение вашего персонажа.", "Происхождение", options)
 		var/singleton/origin_item/origin/chosen_origin = options[result]
 		if(chosen_origin)
 			show_window(chosen_origin, "set_origin_data", user)
@@ -160,14 +160,14 @@
 		return TOPIC_REFRESH
 
 	if(href_list["economic_status"])
-		var/new_status = tgui_input_list(user, "Choose how wealthy your character is. Note that this applies a multiplier to a value that is also affected by your species and job.", "Character Preference", ECONOMIC_POSITIONS, pref.economic_status)
+		var/new_status = tgui_input_list(user, "Выберите, насколько ваш персонаж будет богат. Это применит множитель к значению, которое зависит от вашей работы и расы.", "Богатство", ECONOMIC_POSITIONS, pref.economic_status)
 		if(new_status && CanUseTopic(user))
 			pref.economic_status = new_status
 			return TOPIC_REFRESH
 
 	if(href_list["citizenship"])
 		var/singleton/origin_item/origin/our_origin = GET_SINGLETON(text2path(pref.origin))
-		var/choice = tgui_input_list(user, "Please choose your current citizenship.", "Character Preference", our_origin.possible_citizenships, pref.citizenship)
+		var/choice = tgui_input_list(user, "Выберите гражданство вашего персонажа.", "Гражданство", our_origin.possible_citizenships, pref.citizenship)
 		if(!choice || !CanUseTopic(user))
 			return TOPIC_NOACTION
 		show_citizenship_menu(user, choice)
@@ -181,7 +181,7 @@
 
 	if(href_list["religion"])
 		var/singleton/origin_item/origin/our_origin = GET_SINGLETON(text2path(pref.origin))
-		var/choice = tgui_input_list(user, "Please choose a religion.", "Character Preference", our_origin.possible_religions, pref.religion)
+		var/choice = tgui_input_list(user, "Выберите религию вашего персонажа.", "Религия", our_origin.possible_religions, pref.religion)
 		if(!choice || !CanUseTopic(user))
 			return TOPIC_NOACTION
 		show_religion_menu(user, choice)
@@ -195,7 +195,7 @@
 
 	if(href_list["accent"])
 		var/singleton/origin_item/origin/our_origin = GET_SINGLETON(text2path(pref.origin))
-		var/choice = tgui_input_list(user, "Please choose an accent.", "Character Preference", our_origin.possible_accents, pref.accent)
+		var/choice = tgui_input_list(user, "Пожалуйста, выберите акцент вашего персонажа.", "Акцент", our_origin.possible_accents, pref.accent)
 		if(!choice || !CanUseTopic(user))
 			return TOPIC_NOACTION
 		show_accent_menu(user, choice)

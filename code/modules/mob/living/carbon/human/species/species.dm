@@ -119,12 +119,12 @@
 	var/dust_remains_type =  /obj/effect/decal/remains/xeno/burned
 	var/gibbed_anim = "gibbed-h"
 	var/death_sound
-	var/death_message = "falls limp and stops moving..."
+	var/death_message = "падает и обмякает..."
 	var/death_message_range = 2
-	var/knockout_message = "has been knocked unconscious!"
-	var/halloss_message = "slumps to the ground, too weak to continue fighting."
-	var/halloss_message_self = "You're in too much pain to keep going..."
-	var/list/pain_messages = list("It hurts so much", "You really need some painkillers", "Dear god, the pain") // passive message displayed to user when injured
+	var/knockout_message = "теряет сознание!"
+	var/halloss_message = "обессиленно падает на пол."
+	var/halloss_message_self = "Слишком больно..."
+	var/list/pain_messages = list("Как же больно", "Колёсиков бы", "Боже, как же больно") // passive message displayed to user when injured
 	var/list/pain_item_drop_cry = list("screams in pain and ", "lets out a sharp cry and ", "cries out and ")
 
 	// External Organ Pain Damage
@@ -136,7 +136,7 @@
 	var/organ_med_burn_message = "<span class='danger'><font size=3>Your %PARTNAME% burns horribly!</font></span>"
 	var/organ_high_burn_message = "<span class='danger'><font size=4>Your %PARTNAME% feels like it's on fire!</font></span>"
 
-	var/list/stutter_verbs = list("stammers", "stutters")
+	var/list/stutter_verbs = list("мямлит", "заплетается")
 
 	// Environment tolerance/life processes vars.
 	var/reagent_tag                                   //Used for metabolizing reagents.
@@ -164,14 +164,14 @@
 	var/heat_discomfort_level = 315                   // Aesthetic messages about feeling warm.
 	var/cold_discomfort_level = 285                   // Aesthetic messages about feeling chilly.
 	var/list/heat_discomfort_strings = list(
-		"You feel sweat drip down your neck.",
-		"You feel uncomfortably warm.",
-		"Your skin prickles in the heat."
+		"По моей шее стекает пот.",
+		"Жарковато.",
+		"Жарец."
 		)
 	var/list/cold_discomfort_strings = list(
-		"You feel chilly.",
-		"You shiver suddenly.",
-		"Your chilly flesh stands out in goosebumps."
+		"Прохладновато.",
+		"По коже мурашки.",
+		"У меня от холода мурашки по всему телу."
 		)
 
 	// Order matters, higher pain level should be higher up
@@ -653,7 +653,7 @@
 	if((shock + H.getOxyLoss()*2) >= (exhaust_threshold * 0.8))
 		H.m_intent = M_WALK
 		H.hud_used.move_intent.update_move_icon(H)
-		to_chat(H, SPAN_DANGER("You're too exhausted to run anymore!"))
+		to_chat(H, SPAN_DANGER("Слишком устал чтобы бежать!"))
 		H.flash_pain(shock)
 		return 0
 

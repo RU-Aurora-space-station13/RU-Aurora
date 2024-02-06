@@ -1,5 +1,5 @@
 /datum/exoplanet_theme/barren
-	name = "Barren"
+	name = "Каменистая"
 	surface_turfs = list(
 		/turf/simulated/mineral,
 		/turf/simulated/floor/exoplanet/barren
@@ -21,7 +21,7 @@
 	)
 
 /datum/exoplanet_theme/barren/raskara
-	name = "Raskara"
+	name = "Раскара"
 	surface_turfs = list(
 		/turf/simulated/mineral,
 		/turf/simulated/floor/exoplanet/barren/raskara
@@ -33,7 +33,7 @@
 	)
 
 /datum/exoplanet_theme/barren/asteroid
-	name = "Asteroid"
+	name = "Астероид"
 	mountain_threshold = 0.5
 	perlin_zoom = 21
 	surface_turfs = list(
@@ -61,7 +61,7 @@
 	)
 
 /datum/exoplanet_theme/barren/asteroid/phoron
-	name = "Romanovich Asteroid"
+	name = "Астероид Романовича"
 	wall_ore_levels = list(
 		ORE_PHORON		= 0.7,
 		ORE_PLATINUM 	= 0.6,
