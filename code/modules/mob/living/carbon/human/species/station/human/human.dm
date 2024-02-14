@@ -20,12 +20,11 @@
 		/datum/unarmed_attack/palm,
 		/datum/unarmed_attack/bite
 	)
-	blurb = "Humanity originated in the Sol system, and over the last four centuries has spread colonies across a wide swathe of space. \
-	They hold a wide range of forms and creeds.<br><br>\
-	The Sol Alliance is still massively influential, but independent human nations have managed to shake off its dominance and forge their \
-	own path. Driven by an unending hunger for wealth, powerful corporate interests are bringing untold wealth to humanity. Unchecked \
-	megacorporations have sparked secretive factions to fight their influence, while there is always the risk of someone digging too \
-	deep into the secrets of the galaxy..."
+	blurb = "Человечество начало свой путь в Солнечной Системе и смогло распространиться по всему известному космосу за последние четыре столетия. \
+	<br><br>\
+	Альянс Солнечной Системы по прежнему остаётся очень влиятельной фракцией, но многие независимые образования смогли пошатнуть его положение, стремясь \
+	выковать свою собственную судьбу. Движимые жаждой наживы, многочисленные человеческие корпорации генерируют сверхприбыль каждый год. Не регулируемые, \
+	они используют лоббистов и более прямые методы для защиты своих интересов, и ещё более жестокие, если кто то вдруг копнёт слишком глубоко..."
 	num_alternate_languages = 2
 	secondary_langs = list(LANGUAGE_SOL_COMMON, LANGUAGE_ELYRAN_STANDARD)
 	name_language = null // Use the first-name last-name generator rather than a language scrambler

@@ -1,8 +1,8 @@
 /datum/species/human/offworlder
 	name = SPECIES_HUMAN_OFFWORLD
 	name_plural = "Off-Worlder Humans"
-	blurb = "The Offworlders are humans that have adapted to zero-G conditions through a lifetime of conditioning, exposure, and physical modification. \
-	They thrive in thinner atmosphere and weightlessness, more often than not utilizing advanced life support and body-bracing equipment to sustain themselves in normal Human environments."
+	blurb = "Пустотники всю жизнь жили в невесомости. Благодаря искусственным модификациям и естественным процессам, они смогли идеально приспособиться к стерильным палубам судов. \
+	Цена этому, впрочем, велика: нормально жить на судах с гравитацией они не могут, приходится использовать продвинутые системы жизнеобеспечения."
 	hide_name = FALSE
 	species_height = HEIGHT_CLASS_TALL
 	height_min = 180
@@ -90,9 +90,9 @@
 				if(_R == /singleton/reagent/rmt)
 					return
 
-		var/pain_message = pick("You feel sluggish as if something is weighing you down.",
-								"Your legs feel harder to move.",
-								"You begin to have trouble standing upright.")
+		var/pain_message = pick("Вам тяжко. Невидимая сила тянет вас вниз.",
+								"Ноги не слушаются...",
+								"Не так то и просто стоять на ногах.")
 
 		to_chat(H, "<span class='warning'>[pain_message]</span>")
 
