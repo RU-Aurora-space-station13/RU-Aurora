@@ -49,13 +49,13 @@
 					else
 						sound_to(person, person.mind.antag_role.escape_sound)
 
-			priority_announcement.Announce(replacetext(replacetext(current_map.emergency_shuttle_leaving_dock, "%dock_name%", "[current_map.dock_name]"),  "%ETA%", "[round(get_eta()/60,1)] minute\s"))
+			priority_announcement.Announce(replacetext(replacetext(SSatlas.current_map.emergency_shuttle_leaving_dock, "%dock_name%", "[SSatlas.current_map.dock_name]"),  "%ETA%", "[round(get_eta()/60,1)] minute\s"))
 		if(TRANSFER_JUMP)
 			// Bluespace Jump
-			priority_announcement.Announce(replacetext(replacetext(current_map.bluespace_leaving_dock, "%dock_name%", "[current_map.dock_name]"),  "%ETA%", "[round(get_eta()/60,1)] minute\s"))
-			SetUniversalState(/datum/universal_state/bluespace_jump, arguments=list(current_map.station_levels))
+			priority_announcement.Announce(replacetext(replacetext(SSatlas.current_map.bluespace_leaving_dock, "%dock_name%", "[SSatlas.current_map.dock_name]"),  "%ETA%", "[round(get_eta()/60,1)] minute\s"))
+			SetUniversalState(/datum/universal_state/bluespace_jump, arguments=list(SSatlas.current_map.station_levels))
 		if(TRANSFER_CREW)
-			priority_announcement.Announce(replacetext(replacetext(current_map.shuttle_leaving_dock, "%dock_name%", "[current_map.dock_name]"),  "%ETA%", "[round(get_eta()/60,1)] minute\s"))
+			priority_announcement.Announce(replacetext(replacetext(SSatlas.current_map.shuttle_leaving_dock, "%dock_name%", "[SSatlas.current_map.dock_name]"),  "%ETA%", "[round(get_eta()/60,1)] minute\s"))
 
 /datum/evacuation_controller/starship/finish_evacuation()
 	..()
