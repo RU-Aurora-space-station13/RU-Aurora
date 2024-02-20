@@ -2724,9 +2724,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/engineering)
-"bSM" = (
-/turf/simulated/floor/airless,
-/area/hangar/intrepid)
 "bUN" = (
 /obj/structure/cable/green{
 	icon_state = "1-2"
@@ -5715,7 +5712,6 @@
 	dir = 10
 	},
 /obj/machinery/button/remote/blast_door{
-	dir = 2;
 	id = "miningbay";
 	name = "Mining Bay Entrance";
 	pixel_x = 22;
@@ -12419,7 +12415,7 @@
 /obj/machinery/door/airlock/medical{
 	dir = 1;
 	name = "Morgue";
-	req_access = list(6)
+	req_one_access = list(6,33)
 	},
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -14323,8 +14319,8 @@
 	},
 /obj/machinery/door/airlock/medical{
 	dir = 4;
-	name = "Autopsy and Cremation";
-	req_access = list(6)
+	name = "Cremation";
+	req_one_access = list(6,33)
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -16810,9 +16806,7 @@
 	},
 /obj/structure/table/standard,
 /obj/item/device/suit_cooling_unit,
-/obj/item/storage/toolbox/mechanical{
-	pixel_y = 0
-	},
+/obj/item/storage/toolbox/mechanical,
 /obj/item/storage/belt/utility,
 /obj/item/stack/rods/full{
 	pixel_y = 4
@@ -25738,7 +25732,7 @@
 	dir = 5
 	},
 /obj/machinery/button/remote/blast_door{
-	id = "shutters_deck1_morgue2";
+	id = "shutters_deck1_morgue";
 	name = "Viewing Shutters";
 	pixel_y = 25
 	},
@@ -29521,9 +29515,7 @@
 	},
 /obj/structure/table/standard,
 /obj/item/device/suit_cooling_unit,
-/obj/item/storage/toolbox/mechanical{
-	pixel_y = 0
-	},
+/obj/item/storage/toolbox/mechanical,
 /obj/item/storage/belt/utility,
 /obj/item/stack/rods/full{
 	pixel_y = 4
@@ -50542,7 +50534,7 @@ rPO
 hQO
 sfj
 uHw
-qZW
+lIg
 joW
 doK
 wsT
@@ -55864,7 +55856,7 @@ kyK
 oSi
 kaM
 iRC
-bSM
+iRC
 xsx
 eSV
 eSV
