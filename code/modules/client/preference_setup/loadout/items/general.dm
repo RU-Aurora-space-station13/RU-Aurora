@@ -86,6 +86,7 @@
 	coffeecups["Eridani coffee cup"] = /obj/item/reagent_containers/food/drinks/drinkingglass/newglass/coffeecup/eridani
 	coffeecups["Elyra coffee cup"] = /obj/item/reagent_containers/food/drinks/drinkingglass/newglass/coffeecup/elyra
 	coffeecups["Hegemony coffee cup"] = /obj/item/reagent_containers/food/drinks/drinkingglass/newglass/coffeecup/hegemony
+	coffeecups["Port Antillia coffee cup"] = /obj/item/reagent_containers/food/drinks/drinkingglass/newglass/coffeecup/portantillia
 	coffeecups["Nralakk coffee cup"] = /obj/item/reagent_containers/food/drinks/drinkingglass/newglass/coffeecup/nralakk
 	coffeecups["NT coffee cup"] = /obj/item/reagent_containers/food/drinks/drinkingglass/newglass/coffeecup/nt
 	coffeecups["Hephaestus coffee cup"] = /obj/item/reagent_containers/food/drinks/drinkingglass/newglass/coffeecup/metal/hepht
@@ -246,6 +247,7 @@
 	banners["banner, Svarog"] = /obj/item/flag/svarog
 	banners["banner, Empyrean"] = /obj/item/flag/empyrean
 	banners["banner, Traditinalist Coalition"] = /obj/item/flag/traditionalist
+	banners["banner, Callisto"] = /obj/item/flag/callisto
 	gear_tweaks += new /datum/gear_tweak/path(banners)
 
 /datum/gear/standard
@@ -330,6 +332,7 @@
 	flags["flag, Svarog"] = /obj/item/flag/svarog/l
 	flags["flag, Empyrean"] = /obj/item/flag/empyrean/l
 	flags["flag, Traditionalist Coalition"] = /obj/item/flag/traditionalist/l
+	flags["flag, Callisto"] = /obj/item/flag/callisto/l
 	gear_tweaks += new /datum/gear_tweak/path(flags)
 
 /datum/gear/towel
@@ -408,3 +411,7 @@
 	display_name = "aurora miniature"
 	description = "A commemorative miniature of the NSS Aurora."
 	path = /obj/item/toy/aurora
+
+/datum/gear/lore_radio
+	display_name = "analog radio"
+	path = /obj/item/lore_radio

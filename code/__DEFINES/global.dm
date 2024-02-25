@@ -1,6 +1,6 @@
 //#define TESTING
-#if DM_VERSION < 513
-#error Your version of BYOND is too old to compile the code. At least BYOND 513 is required.
+#if DM_VERSION < 515 && !defined(OPENDREAM)
+#error Your version of BYOND is too old to compile the code. At least BYOND 515 is required.
 #endif
 
 
@@ -64,6 +64,8 @@ GLOBAL_PROTECT(lawchanges)
 GLOBAL_LIST_EMPTY(reg_dna)
 
 GLOBAL_DATUM(newplayer_start, /turf)
+
+GLOBAL_DATUM(lobby_mobs_location, /turf)
 
 //Spawnpoints.
 GLOBAL_LIST_EMPTY(latejoin)
