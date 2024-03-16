@@ -134,15 +134,14 @@
 	else if(istype(pages[page], /obj/item/photo))
 		var/obj/item/photo/P = W
 		send_rsc(user, P.img, "tmp_photo.png")
-		user << browse(
-			dat \
-			+ "<html><head><meta charset='utf-8'><title>[P.name]</title></head>" \
-			+ "<body style='overflow:hidden'>" \
-			+ "<div> <img src='tmp_photo.png' width = '180'" \
-			+ "[P.scribble ? "<div> Written on the back:<br><i>[P.scribble]</i>" : null]" \
-			+ "</body></html>",
-			"window=[name]"
-		)
+
+		dat += "<html><head><title>[P.name]</title></head>" \
+		+ "<body style='overflow:hidden'>" \
+		+ "<div> <img src='tmp_photo.png' width = '180'" \
+		+ "[P.scribble ? "<div> Written on the back:<br><i>[P.scribble]</i>" : null]" \
+		+ "</body></html>"
+
+		show_browser(user, dat, "window=[name]")
 
 /obj/item/paper_bundle/attack_self(mob/user as mob)
 	src.show_content(user)
@@ -186,7 +185,7 @@
 			var/obj/A = pages[page]
 			playsound(src.loc, /singleton/sound_category/page_sound, 50, 1)
 			if(A.type != P.type)
-				usr << browse(null, "window=[name]")
+				show_browser(usr, null, "window=[name]")
 	if(href_list["prev_page"])
 		if(page > 1)
 			var/obj/P = pages[page]
@@ -194,7 +193,7 @@
 			var/obj/A = pages[page]
 			playsound(src.loc, /singleton/sound_category/page_sound, 50, 1)
 			if(A.type != P.type)
-				usr << browse(null, "window=[name]")
+				show_browser(usr, null, "window=[name]")
 	if(href_list["remove"])
 		var/obj/item/W = pages[page]
 		usr.put_in_hands(W)
@@ -212,7 +211,7 @@
 			else
 				usr.put_in_hands(P)
 			usr.unset_machine(src)
-			usr << browse(null, "window=[name]")
+			show_browser(usr, null, "window=[name]")
 			qdel(src)
 			return
 
