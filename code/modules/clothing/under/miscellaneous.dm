@@ -25,6 +25,16 @@
 	worn_state = "blue_pyjamas"
 	item_state = "w_suit"
 
+/obj/item/clothing/under/gwen
+	name = "doll dress"
+	desc = "A beautiful doll dress"
+	icon = 'icons/clothing/under/uniforms/gwen_dress.dmi'
+	icon_state = "gwen_dress"
+	item_state = "gwen_dress"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	no_overheat = TRUE
+	contained_sprite = TRUE
+
 /obj/item/clothing/under/suit_jacket/white
 	name = "white suit"
 	desc = "A white suit, suitable for an excellent host"

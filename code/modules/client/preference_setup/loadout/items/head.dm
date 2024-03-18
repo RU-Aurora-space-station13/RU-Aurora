@@ -211,6 +211,11 @@
 	description = "A selection of hats."
 	path = /obj/item/clothing/head/boaterhat
 
+/datum/gear/accessory/doll_bow
+	display_name = "doll bow"
+	path = /obj/item/clothing/head/pin/ribbon/gwen
+	flags = GEAR_HAS_NAME_SELECTION | GEAR_HAS_DESC_SELECTION
+
 /datum/gear/head/hats/New()
 	..()
 	var/list/hats = list()

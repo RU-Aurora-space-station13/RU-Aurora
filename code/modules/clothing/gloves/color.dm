@@ -37,6 +37,14 @@
 	icon_state = "orange"
 	item_state = "orange"
 
+/obj/item/clothing/gloves/gwen
+	name = "Doll gloves"
+	desc = "A pair of beautiful dark-purple gloves"
+	icon = 'icons/obj/item/clothing/gloves/gwen_gloves.dmi'
+	icon_state = "gwen_gloves"
+	item_state = "gwen_gloves"
+	contained_sprite = TRUE
+
 /obj/item/clothing/gloves/red
 	name = "red gloves"
 	desc = "A pair of gloves, they don't look special in any way."

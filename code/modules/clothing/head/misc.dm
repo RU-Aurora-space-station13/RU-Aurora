@@ -26,6 +26,12 @@
 	name = "clover pin"
 	desc = "A hair pin in the shape of a clover leaf. Smells of mischief."
 
+/obj/item/clothing/head/pin/ribbon/gwen
+	name = "doll bow"
+	desc = "A hair bow with a small golden clip on the back, so it can be attached to hair or tied into it."
+	icon_state = "gwen_bow"
+	item_state = "gwen_bow"
+
 /obj/item/clothing/head/pin/butterfly
 	icon_state = "butterflypin"
 	item_state = "butterflypin"
