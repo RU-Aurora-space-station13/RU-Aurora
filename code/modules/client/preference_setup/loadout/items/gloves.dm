@@ -47,6 +47,11 @@
 	path = /obj/item/clothing/gloves/evening
 	flags = GEAR_HAS_NAME_SELECTION | GEAR_HAS_DESC_SELECTION | GEAR_HAS_COLOR_SELECTION
 
+/datum/gear/gloves/gwen
+	display_name = "Doll gloves"
+	path = /obj/item/clothing/gloves/gwen
+	flags = GEAR_HAS_NAME_SELECTION | GEAR_HAS_DESC_SELECTION
+
 /datum/gear/gloves/ring
 	display_name = "ring selection"
 	description = "A selection of rings."

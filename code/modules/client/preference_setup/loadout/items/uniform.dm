@@ -55,6 +55,11 @@
 	path = /obj/item/clothing/under/skirt
 	flags = GEAR_HAS_NAME_SELECTION | GEAR_HAS_DESC_SELECTION | GEAR_HAS_COLOR_SELECTION
 
+/datum/gear/uniform/gwen
+	display_name = "Doll dress"
+	path = /obj/item/clothing/under/gwen
+	flags = GEAR_HAS_NAME_SELECTION | GEAR_HAS_DESC_SELECTION
+
 /datum/gear/uniform/skirt/New()
 	..()
 	var/list/skirts = list()

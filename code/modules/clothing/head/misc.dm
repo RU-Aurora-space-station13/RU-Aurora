@@ -39,6 +39,12 @@
 	desc = "Finally, a hair pin even a robot chassis can use."
 	matter = list(DEFAULT_WALL_MATERIAL = 10)
 
+/obj/item/clothing/head/pin/ribbon/gwen
+	name = "doll bow"
+	desc = "A hair bow with a small golden clip on the back, so it can be attached to hair or tied into it."
+	icon_state = "gwen_bow"
+	item_state = "gwen_bow"
+
 /obj/item/clothing/head/pin/flower
 	name = "red flower pin"
 	icon_state = "hairflower"
